@@ -9,7 +9,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=10,
+            num_classes=4,
             bbox_coder=dict(
                 type='DeltaXYWHBBoxCoder',
                 target_means=[0., 0., 0., 0.],
@@ -20,28 +20,29 @@ model = dict(
             loss_bbox=dict(type='SmoothL1Loss', beta=1.0, loss_weight=1.0))))
 
 # Modify dataset related settings
-dataset_type = 'nuScenesDataset'
-classes = ('car', 'truck', 'trailer', 'bus', 'construction_vehicle', 'bicycle',
-    'motorcycle', 'pedestrian', 'traffic_cone', 'barrier')
+dataset_type = 'CarlaDataset'
+# classes = ('car', 'pedestrian', 'bicycle', 'truck', 'motorcycle')
+classes = ('car', 'bicycle', 'truck', 'motorcycle')
+d_name = 'carla'
 data = dict(
     train=dict(
         # img_prefix='data/nuscenes/data',
         img_prefix = '',
         classes=classes,
-        ann_file='data/nuscenes/train_annotation_nuscenes_in_coco.json'),
+        ann_file=f'data/{d_name}/train_annotation_{d_name}_in_coco.json'),
     val=dict(
-        img_prefix='data/nuscenes/data',
+        img_prefix='',
         classes=classes,
-        ann_file='data/nuscenes/val_annotation_nuscenes_in_coco.json'),
+        ann_file=f'data/{d_name}/val_annotation_{d_name}_in_coco.json'),
     test=dict(
         # img_prefix='data/nucenes/data',
         img_prefix = '',
         classes=classes,
-        ann_file='data/nuscenes/val_annotation_nuscenes_in_coco.json'))
+        ann_file=f'data/{d_name}/val_annotation_{d_name}_in_coco.json'))
 
 # optimizer
 # lr is set for a batch size of 8
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.001, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=None)
 # learning policy
 lr_config = dict(

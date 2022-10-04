@@ -46,10 +46,8 @@ def convert_nuscenes_to_coco(nusc, scene_splits, split_name, img_folder_base, ou
 
     annotations = []
     images = []
-
     obj_count = 0
     idx_file = 0
-
 
     # -- loop over scenes in this split
     for scene in tqdm(scene_splits):
