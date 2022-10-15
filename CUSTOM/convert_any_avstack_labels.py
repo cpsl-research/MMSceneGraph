@@ -127,6 +127,7 @@ def convert_avstack_to_coco(SM, scene_splits, out_file, cameras=['CAM_FRONT']):
     json.dump(coco_format_json, open(out_file, 'w'))
     print(f'{idx_file} valid images; {n_problems} problems; {n_ignored} ignored with this set')
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Wrap avstack data to coco format for training')
     parser.add_argument('dataset', choices=['carla', 'kitti', 'nuscenes'], help='Choice of dataset')
