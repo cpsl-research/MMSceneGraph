@@ -92,6 +92,7 @@ def convert_avstack_to_coco(SM, scene_splits, out_file, cameras=['CAM_FRONT']):
                             d_img = SD.get_depthimage(i_frame, cam + '_DEPTH')
                         except KeyError as e:
                             if first:
+                                print('\n\nNo depth image found. Logging first exception only. Do not worry if using a dataset like nuScenes or KITTI.\n\n')
                                 logging.exception(e)
                             occ = obj.occlusion
                             first = False
