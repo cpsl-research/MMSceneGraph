@@ -1,5 +1,94 @@
 # Changelog v2.x
 
+### v2.25.3 (25/10/2022)
+
+#### Bug Fixes
+
+- Skip remote sync when wandb is offline (#8755)
+- Fix jpg to png bug when using seg maps (#9078)
+
+#### Improvements
+
+- Fix typo in warning (#8844)
+- Fix CI for timm, pycocotools, onnx (#9034)
+- Upgrade pre-commit hooks (#8964)
+
+#### Documents
+
+- Update BoundedIoULoss config in readme (#8808)
+- Fix Faster R-CNN Readme (#8803)
+- Update location of test_cfg and train_cfg (#8792)
+- Fix issue template (#8966)
+- Update random sampler docstring (#9033)
+- Fix wrong image link (#9054)
+- Fix FPG readme (#9041)
+
+#### Contributors
+
+A total of 13 developers contributed to this release.
+Thanks @Zheng-LinXiao, @i-aki-y, @fbagci, @sudoAimer, @Czm369, @DrRyanHuang, @RangiLyu, @wanghonglie, @shinya7y, @Ryoo72, @akshaygulabrao, @gy-7, @Neesky
+
+### v2.25.2 (15/9/2022)
+
+#### Bug Fixes
+
+- Fix DyDCNv2 RuntimeError (#8485)
+- Fix repeated import of CascadeRPNHead (#8578)
+- Fix absolute positional embedding of swin backbone (#8127)
+- Fix get train_pipeline method of val workflow (#8575)
+
+#### Improvements
+
+- Upgrade onnxsim to at least 0.4.0 (#8383)
+- Support tuple format in analyze_results script (#8549)
+- Fix floordiv warning (#8648)
+
+#### Documents
+
+- Fix typo in HTC link (#8487)
+- Fix docstring of `BboxOverlaps2D` (#8512)
+- Added missed Chinese tutorial link (#8564)
+- Fix mistakes in gaussian radius formula (#8607)
+- Update config documentation about how to Add WandB Hook (#8663)
+- Add mmengine link in readme (#8799)
+- Update issue template (#8802)
+
+#### Contributors
+
+A total of 16 developers contributed to this release.
+Thanks @daquexian, @lyq10085, @ZwwWayne, @fbagci, @BubblyYi, @fathomson, @ShunchiZhang, @ceasona, @Happylkx, @normster, @chhluo, @Lehsuby, @JiayuXu0, @Nourollah, @hewanru-bit, @RangiLyu
+
+### v2.25.1 (29/7/2022)
+
+#### Bug Fixes
+
+- Fix single GPU distributed training of cuda device specifying (#8176)
+- Fix PolygonMask bug in FilterAnnotations (#8136)
+- Fix mdformat version to support python3.6 (#8195)
+- Fix GPG key error in Dockerfile (#8215)
+- Fix `WandbLoggerHook` error (#8273)
+- Fix Pytorch 1.10 incompatibility issues (#8439)
+
+#### Improvements
+
+- Add `mim` to `extras_require` in setup.py (#8194)
+- Support get image shape on macOS (#8434)
+- Add test commands of `mim` in CI (#8230 & #8240)
+- Update `maskformer` to be compatible when cfg is a dictionary (#8263)
+- Clean `Pillow` version check in CI (#8229)
+
+#### Documents
+
+- Change example hook name in tutorials (#8118)
+- Update projects (#8120)
+- Update metafile and release new models (#8294)
+- Add download link in tutorials (#8391)
+
+#### Contributors
+
+A total of 15 developers contributed to this release.
+Thanks @ZwwWayne, @ayulockin, @Mxbonn, @p-mishra1, @Youth-Got, @MiXaiLL76, @chhluo, @jbwang1997, @atinfinity, @shinya7y, @duanzhihua, @STLAND-admin, @BIGWangYuDong, @grimoire, @xiaoyuan0203
+
 ### v2.25.0 (31/5/2022)
 
 #### Highlights

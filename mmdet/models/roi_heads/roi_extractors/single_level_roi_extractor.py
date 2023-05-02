@@ -113,7 +113,7 @@ class SingleRoIExtractor(BaseRoIExtractor):
                 # in other GPUs and will cause a hanging error.
                 # Therefore, we add it to ensure each feature pyramid is
                 # included in the computation graph to avoid runtime bugs.
-                roi_feats += sum(
+                roi_feats = roi_feats + sum(
                     x.view(-1)[0]
                     for x in self.parameters()) * 0. + feats[i].sum() * 0.
         return roi_feats

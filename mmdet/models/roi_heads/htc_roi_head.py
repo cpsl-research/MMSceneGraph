@@ -101,7 +101,7 @@ class HybridTaskCascadeRoIHead(CascadeRoIHead):
             if bbox_semantic_feat.shape[-2:] != bbox_feats.shape[-2:]:
                 bbox_semantic_feat = adaptive_avg_pool2d(
                     bbox_semantic_feat, bbox_feats.shape[-2:])
-            bbox_feats += bbox_semantic_feat
+            bbox_feats = bbox_feats + bbox_semantic_feat
         cls_score, bbox_pred = bbox_head(bbox_feats)
 
         bbox_results = dict(cls_score=cls_score, bbox_pred=bbox_pred)

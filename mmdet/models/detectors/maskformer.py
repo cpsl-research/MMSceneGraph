@@ -30,12 +30,12 @@ class MaskFormer(SingleStageDetector):
         if neck is not None:
             self.neck = MODELS.build(neck)
 
-        panoptic_head_ = panoptic_head.deepcopy()
+        panoptic_head_ = copy.deepcopy(panoptic_head)
         panoptic_head_.update(train_cfg=train_cfg)
         panoptic_head_.update(test_cfg=test_cfg)
         self.panoptic_head = MODELS.build(panoptic_head_)
 
-        panoptic_fusion_head_ = panoptic_fusion_head.deepcopy()
+        panoptic_fusion_head_ = copy.deepcopy(panoptic_fusion_head)
         panoptic_fusion_head_.update(test_cfg=test_cfg)
         self.panoptic_fusion_head = MODELS.build(panoptic_fusion_head_)
 
