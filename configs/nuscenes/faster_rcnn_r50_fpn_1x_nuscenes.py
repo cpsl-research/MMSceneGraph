@@ -1,5 +1,5 @@
 # The new config inherits a base config to highlight the necessary modification
-_base_ = ['../faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py']
+_base_ = ['../faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py']
 
 # We also need to change the num_classes in head to match the dataset's annotation
 model = dict(
