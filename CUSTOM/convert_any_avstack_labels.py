@@ -1,16 +1,12 @@
-import os.path as osp
 import os
 import json
 from tqdm import tqdm
-import glob
 import argparse
 import logging
 import cv2
 
-import avstack
 import avapi
-
-from avstack.objects import Occlusion
+from avstack.environment.objects import Occlusion
 
 
 def convert_avstack_to_coco(SM, scene_splits, out_file, cameras=['CAM_FRONT']):
@@ -138,7 +134,7 @@ if __name__ == "__main__":
 
     # -- create scene manager and get scene splits
     if args.dataset == 'carla':
-        SM = avapi.carla.CarlaSceneManager(args.data_dir)
+        SM = avapi.carla.CarlaScenesManager(args.data_dir)
         cameras = ['CAM_FRONT', 'CAM_BACK', 'CAM_FRONT_LEFT', 'CAM_FRONT_RIGHT']
         splits_scenes = avapi.carla.get_splits_scenes(args.data_dir)
     elif args.dataset == 'kitti':
