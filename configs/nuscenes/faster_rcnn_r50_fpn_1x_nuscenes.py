@@ -1,59 +1,45 @@
-# The new config inherits a base config to highlight the necessary modification
-_base_ = ['../faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py']
+_base_ = [
+    '../_base_/models/faster-rcnn_r50_fpn.py',
+    '../_base_/datasets/nuscenes_detection.py',
+    '../_base_/default_runtime.py', '../_base_/schedules/schedule_1x.py'
+]
 
-# We also need to change the num_classes in head to match the dataset's annotation
+classes = ('car', 'truck', 'trailer', 'bus', 'construction_vehicle', 'bicycle',
+           'motorcycle', 'pedestrian', 'traffic_cone', 'barrier')
+
 model = dict(
+    backbone=dict(init_cfg=None),
     roi_head=dict(
         bbox_head=dict(
-            type='Shared2FCBBoxHead',
-            in_channels=256,
-            fc_out_channels=1024,
-            roi_feat_size=7,
             num_classes=10,
-            bbox_coder=dict(
-                type='DeltaXYWHBBoxCoder',
-                target_means=[0., 0., 0., 0.],
-                target_stds=[0.1, 0.1, 0.2, 0.2]),
-            reg_class_agnostic=False,
-            loss_cls=dict(
-                type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
             loss_bbox=dict(type='SmoothL1Loss', beta=1.0, loss_weight=1.0))))
-
-# Modify dataset related settings
-dataset_type = 'nuScenesDataset'
-classes = ('car', 'truck', 'trailer', 'bus', 'construction_vehicle', 'bicycle',
-    'motorcycle', 'pedestrian', 'traffic_cone', 'barrier')
-data = dict(
-    train=dict(
-        # img_prefix='data/nuscenes/data',
-        img_prefix = '',
-        classes=classes,
-        ann_file='data/nuscenes/train_annotation_nuscenes_in_coco.json'),
-    val=dict(
-        img_prefix='data/nuscenes/data',
-        classes=classes,
-        ann_file='data/nuscenes/val_annotation_nuscenes_in_coco.json'),
-    test=dict(
-        # img_prefix='data/nucenes/data',
-        img_prefix = '',
-        classes=classes,
-        ann_file='data/nuscenes/val_annotation_nuscenes_in_coco.json'))
 
 # optimizer
 # lr is set for a batch size of 8
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
-optimizer_config = dict(grad_clip=None)
-# learning policy
-lr_config = dict(
-    policy='step',
-    warmup='linear',
-    warmup_iters=200,
-    warmup_ratio=0.001,
-    # [7] yields higher performance than [6]
-    step=[7])
-runner = dict(
-    type='EpochBasedRunner', max_epochs=8)
-log_config = dict(interval=100)
+optim_wrapper = dict(optimizer=dict(lr=0.01))
 
-# We can use the pre-trained model to obtain higher performance
-load_from = 'checkpoints/cityscapes/faster_rcnn_r50_fpn_1x_cityscapes_20200502-829424c0.pth'
+# learning rate
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=8,
+        by_epoch=True,
+        # [7] yields higher performance than [6]
+        milestones=[7],
+        gamma=0.1)
+]
+
+# actual epoch = 8 * 8 = 64
+train_cfg = dict(max_epochs=8)
+
+# For better, more stable performance initialize from COCO
+load_from = 'https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth'  # noqa
+
+# NOTE: `auto_scale_lr` is for automatically scaling LR,
+# USER SHOULD NOT CHANGE ITS VALUES.
+# base_batch_size = (8 GPUs) x (1 samples per GPU)
+# TODO: support auto scaling lr
+# auto_scale_lr = dict(base_batch_size=8)
