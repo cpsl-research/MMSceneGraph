@@ -9,13 +9,13 @@ from unittest.mock import MagicMock, Mock, patch
 import mmcv
 import numpy as np
 
-from mmdet.datasets.transforms import (FilterAnnotations, LoadAnnotations,
+from mmscene.datasets.transforms import (FilterAnnotations, LoadAnnotations,
                                        LoadEmptyAnnotations,
                                        LoadImageFromNDArray,
                                        LoadMultiChannelImageFromFiles,
                                        LoadProposals)
-from mmdet.evaluation import INSTANCE_OFFSET
-from mmdet.structures.mask import BitmapMasks, PolygonMasks
+from mmscene.evaluation import INSTANCE_OFFSET
+from mmscene.structures.mask import BitmapMasks, PolygonMasks
 
 try:
     import panopticapi
@@ -255,7 +255,7 @@ class TestLoadPanopticAnnotations(unittest.TestCase):
     @unittest.skipIf(panopticapi is not None, 'panopticapi is installed')
     def test_init_without_panopticapi(self):
         # test if panopticapi is not installed
-        from mmdet.datasets.transforms import LoadPanopticAnnotations
+        from mmscene.datasets.transforms import LoadPanopticAnnotations
         with self.assertRaisesRegex(
                 ImportError,
                 'panopticapi is not installed, please install it by'):
@@ -264,7 +264,7 @@ class TestLoadPanopticAnnotations(unittest.TestCase):
     def test_transform(self):
         sys.modules['panopticapi'] = MagicMock()
         sys.modules['panopticapi.utils'] = MagicMock()
-        from mmdet.datasets.transforms import LoadPanopticAnnotations
+        from mmscene.datasets.transforms import LoadPanopticAnnotations
         mock_rgb2id = Mock(return_value=self.seg_map)
         with patch('panopticapi.utils.rgb2id', mock_rgb2id):
             # test with all False

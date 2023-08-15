@@ -10,8 +10,8 @@ from mmengine.evaluator import DumpResults
 from mmengine.fileio import dump
 from mmengine.runner import Runner
 
-from mmdet.engine.hooks.utils import trigger_visualization_hook
-from mmdet.registry import RUNNERS
+from mmscene.engine.hooks.utils import trigger_visualization_hook
+from mmscene.registry import RUNNERS
 from tools.analysis_tools.robustness_eval import get_results
 
 

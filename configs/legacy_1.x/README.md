@@ -5,7 +5,7 @@
 Configs in this directory implement the legacy configs used by MMDetection V1.x and its model zoos.
 
 To help users convert their models from V1.x to MMDetection V2.0, we provide v1.x configs to inference the converted v1.x models.
-Due to the BC-breaking changes in MMDetection V2.0 from MMDetection V1.x, running inference with the same model weights in these two version will produce different results. The difference will cause within 1% AP absolute difference as can be found in the following table.
+Due to the BC-breaking changes in MMDetection V2.0 from mmsceneection V1.x, running inference with the same model weights in these two version will produce different results. The difference will cause within 1% AP absolute difference as can be found in the following table.
 
 ## Usage
 

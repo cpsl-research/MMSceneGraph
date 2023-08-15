@@ -3,7 +3,7 @@ import pytest
 import torch
 from torch.nn.modules.batchnorm import _BatchNorm
 
-from mmdet.models.necks import (FPG, FPN, FPN_CARAFE, NASFCOS_FPN, NASFPN, SSH,
+from mmscene.models.necks import (FPG, FPN, FPN_CARAFE, NASFCOS_FPN, NASFPN, SSH,
                                 YOLOXPAFPN, ChannelMapper, DilatedEncoder,
                                 DyHead, SSDNeck, YOLOV3Neck)
 

@@ -109,7 +109,7 @@ A project does not necessarily have to be finished in a single PR, but it's esse
 
   - [x] Finish the code
 
-    <!-- The code's design shall follow existing interfaces and convention. For example, each model component should be registered into `mmdet.registry.MODELS` and configurable via a config file. -->
+    <!-- The code's design shall follow existing interfaces and convention. For example, each model component should be registered into `mmscene.registry.MODELS` and configurable via a config file. -->
 
   - [x] Basic docstrings & proper citation
 

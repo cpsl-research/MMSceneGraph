@@ -10,7 +10,7 @@ import torch
 
 
 def test_standard_points_generator():
-    from mmdet.models.task_modules import build_prior_generator
+    from mmscene.models.task_modules import build_prior_generator
 
     # teat init
     anchor_generator_cfg = dict(
@@ -19,7 +19,7 @@ def test_standard_points_generator():
     assert anchor_generator is not None
     assert anchor_generator.num_base_priors == [1, 1]
     # test_stride
-    from mmdet.models.task_modules.prior_generators import MlvlPointGenerator
+    from mmscene.models.task_modules.prior_generators import MlvlPointGenerator
 
     # Square strides
     mlvl_points = MlvlPointGenerator(strides=[4, 10], offset=0)
@@ -105,7 +105,7 @@ def test_standard_points_generator():
 
 
 def test_sparse_prior():
-    from mmdet.models.task_modules.prior_generators import MlvlPointGenerator
+    from mmscene.models.task_modules.prior_generators import MlvlPointGenerator
     mlvl_points = MlvlPointGenerator(strides=[4, 10], offset=0)
     prior_indexs = torch.Tensor([0, 2, 4, 5, 6, 9]).long()
 
@@ -127,7 +127,7 @@ def test_sparse_prior():
         device='cpu')
     assert (sparse_prior == grid_anchors[1][prior_indexs]).all()
 
-    from mmdet.models.task_modules.prior_generators import AnchorGenerator
+    from mmscene.models.task_modules.prior_generators import AnchorGenerator
     mlvl_anchors = AnchorGenerator(
         strides=[16, 32], ratios=[1.], scales=[1.], base_sizes=[4, 8])
     prior_indexs = torch.Tensor([0, 2, 4, 5, 6, 9]).long()
@@ -149,7 +149,7 @@ def test_sparse_prior():
     assert (sparse_prior == grid_anchors[1][prior_indexs]).all()
 
     # for ssd
-    from mmdet.models.task_modules.prior_generators import SSDAnchorGenerator
+    from mmscene.models.task_modules.prior_generators import SSDAnchorGenerator
     featmap_sizes = [(38, 38), (19, 19), (10, 10)]
     anchor_generator = SSDAnchorGenerator(
         scale_major=False,
@@ -167,7 +167,7 @@ def test_sparse_prior():
         assert (sparse_ssd_anchors == ssd_anchors[i][prior_indexs]).all()
 
     # for yolo
-    from mmdet.models.task_modules.prior_generators import YOLOAnchorGenerator
+    from mmscene.models.task_modules.prior_generators import YOLOAnchorGenerator
     featmap_sizes = [(38, 38), (19, 19), (10, 10)]
     anchor_generator = YOLOAnchorGenerator(
         strides=[32, 16, 8],
@@ -231,7 +231,7 @@ def test_sparse_prior():
         assert (sparse_prior == grid_anchors[1][prior_indexs]).all()
 
         # for ssd
-        from mmdet.models.task_modules.prior_generators import \
+        from mmscene.models.task_modules.prior_generators import \
             SSDAnchorGenerator
         featmap_sizes = [(38, 38), (19, 19), (10, 10)]
         anchor_generator = SSDAnchorGenerator(
@@ -251,7 +251,7 @@ def test_sparse_prior():
             assert (sparse_ssd_anchors == ssd_anchors[i][prior_indexs]).all()
 
         # for yolo
-        from mmdet.models.task_modules.prior_generators import \
+        from mmscene.models.task_modules.prior_generators import \
             YOLOAnchorGenerator
         featmap_sizes = [(38, 38), (19, 19), (10, 10)]
         anchor_generator = YOLOAnchorGenerator(
@@ -273,7 +273,7 @@ def test_sparse_prior():
 
 
 def test_standard_anchor_generator():
-    from mmdet.models.task_modules import build_anchor_generator
+    from mmscene.models.task_modules import build_anchor_generator
     anchor_generator_cfg = dict(
         type='AnchorGenerator',
         scales=[8],
@@ -288,7 +288,7 @@ def test_standard_anchor_generator():
 
 
 def test_strides():
-    from mmdet.models.task_modules.prior_generators import AnchorGenerator
+    from mmscene.models.task_modules.prior_generators import AnchorGenerator
 
     # Square strides
     self = AnchorGenerator([10], [1.], [1.], [10])
@@ -310,7 +310,7 @@ def test_strides():
 
 
 def test_ssd_anchor_generator():
-    from mmdet.models.task_modules import build_anchor_generator
+    from mmscene.models.task_modules import build_anchor_generator
     if torch.cuda.is_available():
         device = 'cuda'
     else:
@@ -472,7 +472,7 @@ def test_ssd_anchor_generator():
 
 
 def test_anchor_generator_with_tuples():
-    from mmdet.models.task_modules import build_anchor_generator
+    from mmscene.models.task_modules import build_anchor_generator
     if torch.cuda.is_available():
         device = 'cuda'
     else:
@@ -507,7 +507,7 @@ def test_anchor_generator_with_tuples():
 
 
 def test_yolo_anchor_generator():
-    from mmdet.models.task_modules import build_anchor_generator
+    from mmscene.models.task_modules import build_anchor_generator
     if torch.cuda.is_available():
         device = 'cuda'
     else:
@@ -550,7 +550,7 @@ def test_yolo_anchor_generator():
 
 
 def test_retina_anchor():
-    from mmdet.registry import MODELS
+    from mmscene.registry import MODELS
     if torch.cuda.is_available():
         device = 'cuda'
     else:
@@ -649,7 +649,7 @@ def test_retina_anchor():
 
 
 def test_guided_anchor():
-    from mmdet.registry import MODELS
+    from mmscene.registry import MODELS
     if torch.cuda.is_available():
         device = 'cuda'
     else:

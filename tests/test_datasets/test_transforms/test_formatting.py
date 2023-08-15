@@ -7,9 +7,9 @@ import numpy as np
 import torch
 from mmengine.structures import InstanceData, PixelData
 
-from mmdet.datasets.transforms import PackDetInputs
-from mmdet.structures import DetDataSample
-from mmdet.structures.mask import BitmapMasks
+from mmscene.datasets.transforms import PackDetInputs
+from mmscene.structures import DetDataSample
+from mmscene.structures.mask import BitmapMasks
 
 
 class TestPackDetInputs(unittest.TestCase):

@@ -6,7 +6,7 @@ import torch
 from parameterized import parameterized
 from torch import Tensor
 
-from mmdet.models.roi_heads.mask_heads import FeatureRelayHead
+from mmscene.models.roi_heads.mask_heads import FeatureRelayHead
 
 
 class TestFeatureRelayHead(TestCase):

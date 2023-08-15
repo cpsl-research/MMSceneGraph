@@ -3,8 +3,8 @@ import unittest
 
 import numpy as np
 
-from mmdet.registry import TRANSFORMS
-from mmdet.utils import register_all_modules
+from mmscene.registry import TRANSFORMS
+from mmscene.utils import register_all_modules
 
 register_all_modules()
 

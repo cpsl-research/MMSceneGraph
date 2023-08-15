@@ -1,7 +1,7 @@
 import pytest
 import torch
 
-from mmdet.models.backbones.pvt import (PVTEncoderLayer,
+from mmscene.models.backbones.pvt import (PVTEncoderLayer,
                                         PyramidVisionTransformer,
                                         PyramidVisionTransformerV2)
 

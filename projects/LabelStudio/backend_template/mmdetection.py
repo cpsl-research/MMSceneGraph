@@ -12,7 +12,7 @@ from label_studio_ml.utils import (DATA_UNDEFINED_NAME, get_image_size,
                                    get_single_tag_keys)
 from label_studio_tools.core.utils.io import get_data_dir
 
-from mmdet.apis import inference_detector, init_detector
+from mmscene.apis import inference_detector, init_detector
 
 logger = logging.getLogger(__name__)
 

@@ -2,7 +2,7 @@
 from unittest import TestCase
 from unittest.mock import Mock
 
-from mmdet.engine.hooks import MemoryProfilerHook
+from mmscene.engine.hooks import MemoryProfilerHook
 
 
 class TestMemoryProfilerHook(TestCase):

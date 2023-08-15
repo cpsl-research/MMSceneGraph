@@ -2,8 +2,8 @@
 import pytest
 import torch
 
-from mmdet.models.backbones.hrnet import HRModule, HRNet
-from mmdet.models.backbones.resnet import BasicBlock, Bottleneck
+from mmscene.models.backbones.hrnet import HRModule, HRNet
+from mmscene.models.backbones.resnet import BasicBlock, Bottleneck
 
 
 @pytest.mark.parametrize('block', [BasicBlock, Bottleneck])

@@ -10,9 +10,9 @@ from mmengine.fileio import load
 from mmengine.registry import init_default_scope
 from mmengine.utils import ProgressBar
 
-from mmdet.evaluation import bbox_overlaps
-from mmdet.registry import DATASETS
-from mmdet.utils import replace_cfg_vals, update_data_root
+from mmscene.evaluation import bbox_overlaps
+from mmscene.registry import DATASETS
+from mmscene.utils import replace_cfg_vals, update_data_root
 
 
 def parse_args():

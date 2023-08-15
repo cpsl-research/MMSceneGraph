@@ -4,7 +4,7 @@ import unittest
 import cv2
 import numpy as np
 
-from mmdet.datasets import WIDERFaceDataset
+from mmscene.datasets import WIDERFaceDataset
 
 
 class TestWIDERFaceDataset(unittest.TestCase):

@@ -5,7 +5,7 @@ import torch
 from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 
-from mmdet.models.roi_heads.bbox_heads import MultiInstanceBBoxHead
+from mmscene.models.roi_heads.bbox_heads import MultiInstanceBBoxHead
 
 
 class TestMultiInstanceBBoxHead(TestCase):

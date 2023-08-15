@@ -5,7 +5,7 @@ import pytest
 import torch
 from mmengine.structures import InstanceData, PixelData
 
-from mmdet.structures import DetDataSample
+from mmscene.structures import DetDataSample
 
 
 def _equal(a, b):

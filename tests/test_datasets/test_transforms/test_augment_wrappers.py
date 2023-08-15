@@ -2,12 +2,12 @@
 import copy
 import unittest
 
-from mmdet.datasets.transforms import (AutoAugment, AutoContrast, Brightness,
+from mmscene.datasets.transforms import (AutoAugment, AutoContrast, Brightness,
                                        Color, Contrast, Equalize, Invert,
                                        Posterize, RandAugment, Rotate,
                                        Sharpness, ShearX, ShearY, Solarize,
                                        SolarizeAdd, TranslateX, TranslateY)
-from mmdet.utils import register_all_modules
+from mmscene.utils import register_all_modules
 from .utils import check_result_same, construct_toy_data
 
 register_all_modules()

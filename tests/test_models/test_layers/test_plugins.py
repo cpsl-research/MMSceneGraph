@@ -5,9 +5,9 @@ import pytest
 import torch
 from mmengine.config import ConfigDict
 
-from mmdet.models.layers import DropBlock
-from mmdet.registry import MODELS
-from mmdet.utils import register_all_modules
+from mmscene.models.layers import DropBlock
+from mmscene.registry import MODELS
+from mmscene.utils import register_all_modules
 
 register_all_modules()
 

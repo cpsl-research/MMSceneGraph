@@ -1,4 +1,4 @@
-from mmdet.structures.bbox import BaseBoxes
+from mmscene.structures.bbox import BaseBoxes
 
 
 class ToyBaseBoxes(BaseBoxes):

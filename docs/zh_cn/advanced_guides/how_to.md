@@ -127,7 +127,7 @@ custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=1)]
 ```python
 from mmengine.model import is_model_wrapper
 from mmengine.hooks import Hook
-from mmdet.registry import HOOKS
+from mmscene.registry import HOOKS
 
 
 @HOOKS.register_module()
@@ -174,7 +174,7 @@ class UnfreezeBackboneEpochBasedHook(Hook):
 以 `ResNet` 为例：
 
 ```python
-from mmdet.models import ResNet
+from mmscene.models import ResNet
 import torch
 self = ResNet(depth=18)
 self.eval()

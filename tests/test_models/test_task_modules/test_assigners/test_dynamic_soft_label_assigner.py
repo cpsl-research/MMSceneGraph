@@ -5,8 +5,8 @@ import torch
 from mmengine.structures import InstanceData
 from mmengine.testing import assert_allclose
 
-from mmdet.models.task_modules.assigners import DynamicSoftLabelAssigner
-from mmdet.structures.bbox import HorizontalBoxes
+from mmscene.models.task_modules.assigners import DynamicSoftLabelAssigner
+from mmscene.structures.bbox import HorizontalBoxes
 
 
 class TestDynamicSoftLabelAssigner(TestCase):

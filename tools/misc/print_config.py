@@ -4,7 +4,7 @@ import os
 
 from mmengine import Config, DictAction
 
-from mmdet.utils import replace_cfg_vals, update_data_root
+from mmscene.utils import replace_cfg_vals, update_data_root
 
 
 def parse_args():

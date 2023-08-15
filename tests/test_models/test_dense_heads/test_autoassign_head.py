@@ -4,7 +4,7 @@ from unittest import TestCase
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.dense_heads import AutoAssignHead
+from mmscene.models.dense_heads import AutoAssignHead
 
 
 class TestAutoAssignHead(TestCase):

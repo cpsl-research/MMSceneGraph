@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     from label_studio_ml.api import init_app
 
-    from projects.LabelStudio.backend_template.mmdetection import MMDetection
+    from projects.LabelStudio.backend_template.mmdetection import mmsceneection
 
     parser = argparse.ArgumentParser(description='Label studio')
     parser.add_argument(

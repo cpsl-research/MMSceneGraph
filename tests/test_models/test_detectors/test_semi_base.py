@@ -4,8 +4,8 @@ from unittest import TestCase
 from mmengine.registry import MODELS
 from parameterized import parameterized
 
-from mmdet.testing import get_detector_cfg
-from mmdet.utils import register_all_modules
+from mmscene.testing import get_detector_cfg
+from mmscene.utils import register_all_modules
 
 register_all_modules()
 

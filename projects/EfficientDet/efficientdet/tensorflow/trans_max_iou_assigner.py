@@ -4,9 +4,9 @@ from typing import Optional
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.task_modules.assigners.assign_result import AssignResult
-from mmdet.models.task_modules.assigners.max_iou_assigner import MaxIoUAssigner
-from mmdet.registry import TASK_UTILS
+from mmscene.models.task_modules.assigners.assign_result import AssignResult
+from mmscene.models.task_modules.assigners.max_iou_assigner import MaxIoUAssigner
+from mmscene.registry import TASK_UTILS
 
 
 @TASK_UTILS.register_module()

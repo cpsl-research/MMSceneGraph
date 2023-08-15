@@ -3,7 +3,7 @@ import pytest
 import torch
 from mmengine.config import ConfigDict
 
-from mmdet.models.layers.transformer import (AdaptivePadding,
+from mmscene.models.layers.transformer import (AdaptivePadding,
                                              DetrTransformerDecoder,
                                              DetrTransformerEncoder,
                                              PatchEmbed, PatchMerging)

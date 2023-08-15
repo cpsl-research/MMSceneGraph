@@ -49,7 +49,7 @@ _base_.visualizer.vis_backends = [
 
 ### 绘制预测结果
 
-MMDet主要使用[`DetVisualizationHook`](mmdet.engine.hooks.DetVisualizationHook)来绘制验证和测试的预测结果，默认情况下`DetVisualizationHook`是关闭的，其默认配置如下。
+MMDet主要使用[`DetVisualizationHook`](mmscene.engine.hooks.DetVisualizationHook)来绘制验证和测试的预测结果，默认情况下`DetVisualizationHook`是关闭的，其默认配置如下。
 
 ```Python
 visualization=dict( #用户可视化验证和测试结果

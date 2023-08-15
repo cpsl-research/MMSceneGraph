@@ -92,7 +92,7 @@ python demo/image_demo.py demo/demo.jpg rtmdet_tiny_8xb32-300e_coco.py --weights
 方案 b：如果你通过 MIM 安装的 MMDetection，那么可以打开你的 Python 解析器，复制并粘贴以下代码：
 
 ```python
-from mmdet.apis import init_detector, inference_detector
+from mmscene.apis import init_detector, inference_detector
 
 config_file = 'rtmdet_tiny_8xb32-300e_coco.py'
 checkpoint_file = 'rtmdet_tiny_8xb32-300e_coco_20220902_112414-78e30dcc.pth'

@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import unittest
 
-from mmdet.datasets import CocoDataset
+from mmscene.datasets import CocoDataset
 
 
 class TestCocoDataset(unittest.TestCase):

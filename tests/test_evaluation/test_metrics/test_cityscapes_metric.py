@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from PIL import Image
 
-from mmdet.evaluation import CityScapesMetric
+from mmscene.evaluation import CityScapesMetric
 
 try:
     import cityscapesscripts

@@ -5,8 +5,8 @@ from unittest import TestCase
 import mmcv
 import pytest
 
-from mmdet.datasets.transforms import *  # noqa
-from mmdet.registry import TRANSFORMS
+from mmscene.datasets.transforms import *  # noqa
+from mmscene.registry import TRANSFORMS
 
 
 class TestMuitiScaleFlipAug(TestCase):
@@ -28,7 +28,7 @@ class TestMuitiScaleFlipAug(TestCase):
             ],
                         [
                             dict(
-                                type='mmdet.PackDetInputs',
+                                type='mmscene.PackDetInputs',
                                 meta_keys=('img_id', 'img_path', 'ori_shape',
                                            'img_shape', 'scale_factor'))
                         ]])
@@ -66,7 +66,7 @@ class TestMuitiScaleFlipAug(TestCase):
                 ],
                 [
                     dict(
-                        type='mmdet.PackDetInputs',
+                        type='mmscene.PackDetInputs',
                         meta_keys=('img_id', 'img_path', 'ori_shape',
                                    'img_shape', 'scale_factor', 'flip',
                                    'flip_direction'))
@@ -93,7 +93,7 @@ class TestMuitiScaleFlipAug(TestCase):
             ],
                         [
                             dict(
-                                type='mmdet.PackDetInputs',
+                                type='mmscene.PackDetInputs',
                                 meta_keys=('img_id', 'img_path', 'ori_shape',
                                            'img_shape', 'scale_factor'))
                         ]])
@@ -111,7 +111,7 @@ class TestMuitiScaleFlipAug(TestCase):
                 ],
                 [
                     dict(
-                        type='mmdet.PackDetInputs',
+                        type='mmscene.PackDetInputs',
                         meta_keys=('img_id', 'img_path', 'ori_shape',
                                    'img_shape', 'scale_factor', 'flip',
                                    'flip_direction'))
@@ -134,7 +134,7 @@ class TestMuitiScaleFlipAug(TestCase):
             ],
                         [
                             dict(
-                                type='mmdet.PackDetInputs',
+                                type='mmscene.PackDetInputs',
                                 meta_keys=('img_id', 'img_path', 'ori_shape',
                                            'img_shape', 'scale_factor'))
                         ]])
@@ -157,7 +157,7 @@ class TestMuitiScaleFlipAug(TestCase):
                 ],
                 [
                     dict(
-                        type='mmdet.PackDetInputs',
+                        type='mmscene.PackDetInputs',
                         meta_keys=('img_id', 'img_path', 'ori_shape',
                                    'img_shape', 'scale_factor', 'flip',
                                    'flip_direction'))

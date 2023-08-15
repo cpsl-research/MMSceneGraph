@@ -5,7 +5,7 @@ from unittest import TestCase
 import torch
 from parameterized import parameterized
 
-from mmdet.models.roi_heads.bbox_heads import DoubleConvFCBBoxHead
+from mmscene.models.roi_heads.bbox_heads import DoubleConvFCBBoxHead
 
 
 class TestDoubleBboxHead(TestCase):

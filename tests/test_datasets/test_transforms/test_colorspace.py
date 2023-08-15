@@ -2,7 +2,7 @@
 import copy
 import unittest
 
-from mmdet.datasets.transforms import (AutoContrast, Brightness, Color,
+from mmscene.datasets.transforms import (AutoContrast, Brightness, Color,
                                        ColorTransform, Contrast, Equalize,
                                        Invert, Posterize, Sharpness, Solarize,
                                        SolarizeAdd)

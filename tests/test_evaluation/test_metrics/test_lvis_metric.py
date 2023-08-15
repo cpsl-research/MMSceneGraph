@@ -6,7 +6,7 @@ import numpy as np
 import pycocotools.mask as mask_util
 import torch
 
-from mmdet.evaluation.metrics import LVISMetric
+from mmscene.evaluation.metrics import LVISMetric
 
 try:
     import lvis

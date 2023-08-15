@@ -4,10 +4,10 @@ from typing import Optional, Tuple, Union
 import torch
 from torch import Tensor
 
-from mmdet.models.task_modules.prior_generators.anchor_generator import \
+from mmscene.models.task_modules.prior_generators.anchor_generator import \
     AnchorGenerator
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import HorizontalBoxes
+from mmscene.registry import TASK_UTILS
+from mmscene.structures.bbox import HorizontalBoxes
 
 DeviceType = Union[str, torch.device]
 

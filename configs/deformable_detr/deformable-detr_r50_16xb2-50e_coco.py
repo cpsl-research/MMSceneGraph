@@ -79,7 +79,7 @@ model = dict(
     test_cfg=dict(max_per_img=100))
 
 # train_pipeline, NOTE the img_scale and the Pad's size_divisor is different
-# from the default setting in mmdet.
+# from the default setting in mmscene.
 train_pipeline = [
     dict(type='LoadImageFromFile', backend_args={{_base_.backend_args}}),
     dict(type='LoadAnnotations', with_bbox=True),

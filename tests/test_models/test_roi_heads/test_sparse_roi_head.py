@@ -6,9 +6,9 @@ import torch
 import torch.nn as nn
 from parameterized import parameterized
 
-from mmdet.models.roi_heads import StandardRoIHead  # noqa
-from mmdet.registry import MODELS
-from mmdet.testing import demo_mm_inputs, demo_mm_proposals, get_roi_head_cfg
+from mmscene.models.roi_heads import StandardRoIHead  # noqa
+from mmscene.registry import MODELS
+from mmscene.testing import demo_mm_inputs, demo_mm_proposals, get_roi_head_cfg
 
 
 class TestCascadeRoIHead(TestCase):

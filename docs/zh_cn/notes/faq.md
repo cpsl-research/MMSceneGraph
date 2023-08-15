@@ -185,7 +185,7 @@ PYTHONPATH="$(dirname $0)/..":$PYTHONPATH
   4. 你也可以尝试使用 `AvoidCUDAOOM` 来避免该问题。首先它将尝试调用 `torch.cuda.empty_cache()`。如果失败，将会尝试把输入类型转换到 FP16。如果仍然失败，将会把输入从 GPUs 转换到 CPUs 进行计算。这里提供了两个使用的例子：
 
      ```python
-     from mmdet.utils import AvoidCUDAOOM
+     from mmscene.utils import AvoidCUDAOOM
 
      output = AvoidCUDAOOM.retry_if_cuda_oom(some_function)(input1, input2)
      ```

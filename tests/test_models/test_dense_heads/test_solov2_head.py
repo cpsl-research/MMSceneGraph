@@ -6,9 +6,9 @@ import torch
 from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 
-from mmdet import *  # noqa
-from mmdet.models.dense_heads import SOLOV2Head
-from mmdet.structures.mask import BitmapMasks
+from mmscene import *  # noqa
+from mmscene.models.dense_heads import SOLOV2Head
+from mmscene.structures.mask import BitmapMasks
 
 
 def _rand_masks(num_items, bboxes, img_w, img_h):

@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from mmdet.models.detectors.single_stage import SingleStageDetector
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, OptConfigType, OptMultiConfig
+from mmscene.models.detectors.single_stage import SingleStageDetector
+from mmscene.registry import MODELS
+from mmscene.utils import ConfigType, OptConfigType, OptMultiConfig
 
 
 @MODELS.register_module()

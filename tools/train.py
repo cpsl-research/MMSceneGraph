@@ -9,7 +9,7 @@ from mmengine.logging import print_log
 from mmengine.registry import RUNNERS
 from mmengine.runner import Runner
 
-from mmdet.utils import setup_cache_size_limit_of_dynamo
+from mmscene.utils import setup_cache_size_limit_of_dynamo
 
 
 def parse_args():

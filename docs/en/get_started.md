@@ -93,7 +93,7 @@ You will see a new image `demo.jpg` on your `./outputs/vis` folder, where boundi
 Case b: If you install MMDetection with MIM, open your python interpreter and copy&paste the following codes.
 
 ```python
-from mmdet.apis import init_detector, inference_detector
+from mmscene.apis import init_detector, inference_detector
 
 config_file = 'rtmdet_tiny_8xb32-300e_coco.py'
 checkpoint_file = 'rtmdet_tiny_8xb32-300e_coco_20220902_112414-78e30dcc.pth'
@@ -193,7 +193,7 @@ thus we only need to install MMEngine, MMCV, and MMDetection with the following 
 **Step 3.** Verification.
 
 ```python
-import mmdet
+import mmscene
 print(mmdet.__version__)
 # Example output: 3.0.0, or an another version.
 ```

@@ -92,7 +92,7 @@ The main branch works with **PyTorch 1.6+**.
 
 </details>
 
-Apart from MMDetection, we also released [MMEngine](https://github.com/open-mmlab/mmengine) for model training and [MMCV](https://github.com/open-mmlab/mmcv) for computer vision research, which are heavily depended on by this toolbox.
+Apart from mmsceneection, we also released [MMEngine](https://github.com/open-mmlab/mmengine) for model training and [MMCV](https://github.com/open-mmlab/mmcv) for computer vision research, which are heavily depended on by this toolbox.
 
 ## What's New
 
@@ -175,7 +175,7 @@ For detailed user guides and advanced guides, please refer to our [documentation
 
 We also provide object detection colab tutorial [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](demo/MMDet_Tutorial.ipynb) and instance segmentation colab tutorial [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](demo/MMDet_InstanceSeg_Tutorial.ipynb).
 
-To migrate from MMDetection 2.x, please refer to [migration](https://mmdetection.readthedocs.io/en/latest/migration.html).
+To migrate from mmsceneection 2.x, please refer to [migration](https://mmdetection.readthedocs.io/en/latest/migration.html).
 
 ## Overview of Benchmark and Model Zoo
 

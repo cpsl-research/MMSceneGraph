@@ -5,7 +5,7 @@ from unittest import TestCase
 import numpy as np
 import torch
 
-from mmdet.evaluation import CrowdHumanMetric
+from mmscene.evaluation import CrowdHumanMetric
 
 
 class TestCrowdHumanMetric(TestCase):

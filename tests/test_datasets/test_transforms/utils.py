@@ -2,8 +2,8 @@
 import numpy as np
 from mmengine.testing import assert_allclose
 
-from mmdet.structures.bbox import BaseBoxes, HorizontalBoxes
-from mmdet.structures.mask import BitmapMasks, PolygonMasks
+from mmscene.structures.bbox import BaseBoxes, HorizontalBoxes
+from mmscene.structures.mask import BitmapMasks, PolygonMasks
 
 
 def create_random_bboxes(num_bboxes, img_w, img_h):

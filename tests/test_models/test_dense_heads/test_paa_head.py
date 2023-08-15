@@ -6,9 +6,9 @@ import torch
 from mmengine import Config
 from mmengine.structures import InstanceData
 
-from mmdet import *  # noqa
-from mmdet.models.dense_heads import PAAHead, paa_head
-from mmdet.models.utils import levels_to_images
+from mmscene import *  # noqa
+from mmscene.models.dense_heads import PAAHead, paa_head
+from mmscene.models.utils import levels_to_images
 
 
 class TestPAAHead(TestCase):

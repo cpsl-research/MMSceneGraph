@@ -9,7 +9,7 @@ import pytest
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.task_modules.assigners import MaxIoUAssigner
+from mmscene.models.task_modules.assigners import MaxIoUAssigner
 
 
 @pytest.mark.parametrize('neg_iou_thr', [0.5, (0, 0.5)])

@@ -5,8 +5,8 @@ import torch.nn as nn
 from mmcv.cnn.bricks import Swish
 from mmengine.model import BaseModule
 
-from mmdet.registry import MODELS
-from mmdet.utils import MultiConfig, OptConfigType
+from mmscene.registry import MODELS
+from mmscene.utils import MultiConfig, OptConfigType
 from .utils import DepthWiseConvBlock, DownChannelBlock, MaxPool2dSamePadding
 
 

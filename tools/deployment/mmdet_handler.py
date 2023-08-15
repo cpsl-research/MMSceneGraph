@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from ts.torch_handler.base_handler import BaseHandler
 
-from mmdet.apis import inference_detector, init_detector
+from mmscene.apis import inference_detector, init_detector
 
 
 class MMdetHandler(BaseHandler):

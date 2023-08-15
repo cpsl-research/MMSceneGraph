@@ -2,8 +2,8 @@
 import pytest
 import torch
 
-from mmdet.models.backbones import Res2Net
-from mmdet.models.backbones.res2net import Bottle2neck
+from mmscene.models.backbones import Res2Net
+from mmscene.models.backbones.res2net import Bottle2neck
 from .utils import is_block
 
 

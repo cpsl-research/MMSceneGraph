@@ -2,7 +2,7 @@
 import pytest
 import torch
 
-from mmdet.models.layers import ConvUpsample
+from mmscene.models.layers import ConvUpsample
 
 
 @pytest.mark.parametrize('num_layers', [0, 1, 2])

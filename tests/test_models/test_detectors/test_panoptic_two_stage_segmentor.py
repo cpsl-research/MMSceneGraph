@@ -4,10 +4,10 @@ import unittest
 import torch
 from parameterized import parameterized
 
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.testing._utils import demo_mm_inputs, get_detector_cfg
-from mmdet.utils import register_all_modules
+from mmscene.registry import MODELS
+from mmscene.structures import DetDataSample
+from mmscene.testing._utils import demo_mm_inputs, get_detector_cfg
+from mmscene.utils import register_all_modules
 
 
 class TestTwoStagePanopticSegmentor(unittest.TestCase):

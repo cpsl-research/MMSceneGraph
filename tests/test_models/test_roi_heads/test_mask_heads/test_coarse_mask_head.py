@@ -3,7 +3,7 @@ import unittest
 import torch
 from parameterized import parameterized
 
-from mmdet.models.roi_heads.mask_heads import CoarseMaskHead
+from mmscene.models.roi_heads.mask_heads import CoarseMaskHead
 
 
 class TestCoarseMaskHead(unittest.TestCase):

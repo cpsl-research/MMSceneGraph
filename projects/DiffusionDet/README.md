@@ -14,11 +14,11 @@ This is an implementation of [DiffusionDet](https://github.com/ShoufaChen/Diffus
 
 1. Download the [DiffusionDet released model](https://github.com/ShoufaChen/DiffusionDet#models).
 
-2. Convert model from DiffusionDet version to MMDetection version. We give a [sample script](model_converters/diffusiondet_resnet_to_mmdet.py)
+2. Convert model from DiffusionDet version to MMDetection version. We give a [sample script](model_converters/diffusiondet_resnet_to_mmscene.py)
    to convert `DiffusionDet-resnet50` model. Users can download the corresponding models from [here](https://github.com/ShoufaChen/DiffusionDet/releases/download/v0.1/diffdet_coco_res50.pth).
 
    ```shell
-   python projects/DiffusionDet/model_converters/diffusiondet_resnet_to_mmdet.py ${DiffusionDet ckpt path} ${MMDetectron ckpt path}
+   python projects/DiffusionDet/model_converters/diffusiondet_resnet_to_mmscene.py ${DiffusionDet ckpt path} ${MMDetectron ckpt path}
    ```
 
 3. Testing the model in MMDetection.
@@ -127,7 +127,7 @@ A project does not necessarily have to be finished in a single PR, but it's esse
 
   - [x] Finish the code
 
-    <!-- The code's design shall follow existing interfaces and convention. For example, each model component should be registered into `mmdet.registry.MODELS` and configurable via a config file. -->
+    <!-- The code's design shall follow existing interfaces and convention. For example, each model component should be registered into `mmscene.registry.MODELS` and configurable via a config file. -->
 
   - [x] Basic docstrings & proper citation
 

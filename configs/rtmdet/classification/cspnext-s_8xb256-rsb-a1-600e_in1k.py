@@ -7,7 +7,7 @@ _base_ = [
 model = dict(
     type='ImageClassifier',
     backbone=dict(
-        type='mmdet.CSPNeXt',
+        type='mmscene.CSPNeXt',
         arch='P5',
         out_indices=(4, ),
         expand_ratio=0.5,
@@ -15,7 +15,7 @@ model = dict(
         widen_factor=0.5,
         channel_attention=True,
         norm_cfg=dict(type='BN'),
-        act_cfg=dict(type='mmdet.SiLU')),
+        act_cfg=dict(type='mmscene.SiLU')),
     neck=dict(type='GlobalAveragePooling'),
     head=dict(
         type='LinearClsHead',

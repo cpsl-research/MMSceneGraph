@@ -5,7 +5,7 @@ import torch
 from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 
-from mmdet.models.dense_heads import GuidedAnchorHead
+from mmscene.models.dense_heads import GuidedAnchorHead
 
 guided_anchor_head_config = ConfigDict(
     dict(

@@ -7,7 +7,7 @@ import numpy as np
 from mmengine.dataset import DefaultSampler
 from torch.utils.data import Dataset
 
-from mmdet.datasets.samplers import AspectRatioBatchSampler
+from mmscene.datasets.samplers import AspectRatioBatchSampler
 
 
 class DummyDataset(Dataset):

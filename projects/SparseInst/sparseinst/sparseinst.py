@@ -6,11 +6,11 @@ import torch.nn.functional as F
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models import BaseDetector
-from mmdet.models.utils import unpack_gt_instances
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList, SampleList
-from mmdet.utils import ConfigType, OptConfigType
+from mmscene.models import BaseDetector
+from mmscene.models.utils import unpack_gt_instances
+from mmscene.registry import MODELS
+from mmscene.structures import OptSampleList, SampleList
+from mmscene.utils import ConfigType, OptConfigType
 
 
 @torch.jit.script

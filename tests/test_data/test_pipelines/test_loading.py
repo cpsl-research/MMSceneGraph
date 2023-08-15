@@ -6,8 +6,8 @@ import mmcv
 import numpy as np
 import pytest
 
-from mmdet.core.mask import BitmapMasks, PolygonMasks
-from mmdet.datasets.pipelines import (FilterAnnotations, LoadImageFromFile,
+from mmscene.core.mask import BitmapMasks, PolygonMasks
+from mmscene.datasets.pipelines import (FilterAnnotations, LoadImageFromFile,
                                       LoadImageFromWebcam,
                                       LoadMultiChannelImageFromFiles)
 

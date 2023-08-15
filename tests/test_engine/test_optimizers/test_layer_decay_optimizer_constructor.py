@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 from mmcv.cnn import ConvModule
 
-from mmdet.engine import LearningRateDecayOptimizerConstructor
+from mmscene.engine import LearningRateDecayOptimizerConstructor
 
 base_lr = 1
 decay_rate = 2

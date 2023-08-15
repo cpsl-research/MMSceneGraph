@@ -387,13 +387,13 @@ In MMDetection's config, we use `model` to set up detection algorithm components
 model = dict(
     type='RTMDet',  # The name of detector
     data_preprocessor=dict(  # The config of data preprocessor, usually includes image normalization and padding
-        type='DetDataPreprocessor',  # The type of the data preprocessor. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmdet.models.data_preprocessors.DetDataPreprocessor
+        type='DetDataPreprocessor',  # The type of the data preprocessor. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmscene.models.data_preprocessors.DetDataPreprocessor
         mean=[103.53, 116.28, 123.675],  # Mean values used to pre-training the pre-trained backbone models, ordered in R, G, B
         std=[57.375, 57.12, 58.395],  # Standard variance used to pre-training the pre-trained backbone models, ordered in R, G, B
         bgr_to_rgb=False,  # whether to convert image from BGR to RGB
         batch_augments=None),  # Batch-level augmentations
     backbone=dict(  # The config of backbone
-        type='CSPNeXt',  # The type of backbone network. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmdet.models.backbones.CSPNeXt
+        type='CSPNeXt',  # The type of backbone network. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmscene.models.backbones.CSPNeXt
         arch='P5',  # Architecture of CSPNeXt, from {P5, P6}. Defaults to P5
         expand_ratio=0.5,  # Ratio to adjust the number of channels of the hidden layer. Defaults to 0.5
         deepen_factor=1,  # Depth multiplier, multiply number of blocks in CSP layer by this amount. Defaults to 1.0
@@ -402,7 +402,7 @@ model = dict(
         norm_cfg=dict(type='SyncBN'),  # Dictionary to construct and config norm layer. Defaults to dict(type=’BN’, requires_grad=True)
         act_cfg=dict(type='SiLU', inplace=True)),  # Config dict for activation layer. Defaults to dict(type=’SiLU’)
     neck=dict(
-        type='CSPNeXtPAFPN',  # The type of neck is CSPNeXtPAFPN. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmdet.models.necks.CSPNeXtPAFPN
+        type='CSPNeXtPAFPN',  # The type of neck is CSPNeXtPAFPN. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmscene.models.necks.CSPNeXtPAFPN
         in_channels=[256, 512, 1024],  # Number of input channels per scale
         out_channels=256,  # Number of output channels (used at each scale)
         num_csp_blocks=3,  # Number of bottlenecks in CSPLayer. Defaults to 3
@@ -410,7 +410,7 @@ model = dict(
         norm_cfg=dict(type='SyncBN'),  # Config dict for normalization layer. Default: dict(type=’BN’)
         act_cfg=dict(type='SiLU', inplace=True)),  # Config dict for activation layer. Default: dict(type=’Swish’)
     bbox_head=dict(
-        type='RTMDetSepBNHead',  # The type of bbox_head is RTMDetSepBNHead. RTMDetHead with separated BN layers and shared conv layers. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmdet.models.dense_heads.RTMDetSepBNHead
+        type='RTMDetSepBNHead',  # The type of bbox_head is RTMDetSepBNHead. RTMDetHead with separated BN layers and shared conv layers. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmscene.models.dense_heads.RTMDetSepBNHead
         num_classes=80,  # Number of categories excluding the background category
         in_channels=256,  # Number of channels in the input feature map
         stacked_convs=2,  # Whether to share conv layers between stages. Defaults to True
@@ -421,12 +421,12 @@ model = dict(
             strides=[8, 16, 32]),  # Strides of anchors in multiple feature levels in order (w, h)
         bbox_coder=dict(type='DistancePointBBoxCoder'),  # Distance Point BBox coder.This coder encodes gt bboxes (x1, y1, x2, y2) into (top, bottom, left,right) and decode it back to the original. Refer to https://github.com/open-mmlab/mmdetection/blob/main/mmdet/models/task_modules/coders/distance_point_bbox_coder.py#L9
         loss_cls=dict(  # Config of loss function for the classification branch
-            type='QualityFocalLoss',  # Type of loss for classification branch. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmdet.models.losses.QualityFocalLoss
+            type='QualityFocalLoss',  # Type of loss for classification branch. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmscene.models.losses.QualityFocalLoss
             use_sigmoid=True,  # Whether sigmoid operation is conducted in QFL. Defaults to True
             beta=2.0,  # The beta parameter for calculating the modulating factor. Defaults to 2.0
             loss_weight=1.0),  #  Loss weight of current loss
         loss_bbox=dict(  # Config of loss function for the regression branch
-            type='GIoULoss',  # Type of loss. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmdet.models.losses.GIoULoss
+            type='GIoULoss',  # Type of loss. Refer to https://mmdetection.readthedocs.io/en/latest/api.html#mmscene.models.losses.GIoULoss
             loss_weight=2.0),  # Loss weight of the regression branch
         with_objectness=False,  # Whether to add an objectness branch. Defaults to True
         exp_on_reg=True,  # Whether to use .exp() in regression

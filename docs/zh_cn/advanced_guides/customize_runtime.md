@@ -48,7 +48,7 @@ optim_wrapper = dict(
 `mmdet/engine/optimizers` 的文件夹。然后在文件（比如，`mmdet/engine/optimizers/my_optimizer.py`）实现一个新的优化器。
 
 ```python
-from mmdet.registry import OPTIMIZERS
+from mmscene.registry import OPTIMIZERS
 from torch.optim import Optimizer
 
 
@@ -106,7 +106,7 @@ optim_wrapper = dict(
 ```python
 from mmengine.optim import DefaultOptiWrapperConstructor
 
-from mmdet.registry import OPTIM_WRAPPER_CONSTRUCTORS
+from mmscene.registry import OPTIM_WRAPPER_CONSTRUCTORS
 from .my_optimizer import MyOptimizer
 
 
@@ -254,7 +254,7 @@ MMEngine 提供了许多有用的[钩子](https://mmdetection.readthedocs.io/en/
 
 ```python
 from mmengine.hooks import Hook
-from mmdet.registry import HOOKS
+from mmscene.registry import HOOKS
 
 
 @HOOKS.register_module()

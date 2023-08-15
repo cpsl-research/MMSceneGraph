@@ -6,8 +6,8 @@ import mmcv
 from mmcv.transforms import Compose
 from mmengine.utils import track_iter_progress
 
-from mmdet.apis import inference_detector, init_detector
-from mmdet.registry import VISUALIZERS
+from mmscene.apis import inference_detector, init_detector
+from mmscene.registry import VISUALIZERS
 
 
 def parse_args():

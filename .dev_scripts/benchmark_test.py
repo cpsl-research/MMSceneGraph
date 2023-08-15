@@ -9,8 +9,8 @@ from mmengine.logging import MMLogger
 from mmengine.registry import RUNNERS
 from mmengine.runner import Runner
 
-from mmdet.testing import replace_to_ceph
-from mmdet.utils import register_all_modules, replace_cfg_vals
+from mmscene.testing import replace_to_ceph
+from mmscene.utils import register_all_modules, replace_cfg_vals
 
 
 def parse_args():

@@ -4,11 +4,11 @@ from unittest import TestCase
 import torch
 from mmengine import ConfigDict
 
-from mmdet.models import DetTTAModel
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.testing import get_detector_cfg
-from mmdet.utils import register_all_modules
+from mmscene.models import DetTTAModel
+from mmscene.registry import MODELS
+from mmscene.structures import DetDataSample
+from mmscene.testing import get_detector_cfg
+from mmscene.utils import register_all_modules
 
 
 class TestDetTTAModel(TestCase):

@@ -7,7 +7,7 @@ import pycocotools.mask as mask_util
 import torch
 from mmengine.fileio import dump
 
-from mmdet.evaluation import CocoMetric
+from mmscene.evaluation import CocoMetric
 
 
 class TestCocoMetric(TestCase):

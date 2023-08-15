@@ -7,8 +7,8 @@ from mmcv.cnn.bricks import Swish, build_norm_layer
 from torch.nn import functional as F
 from torch.nn.init import _calculate_fan_in_and_fan_out, trunc_normal_
 
-from mmdet.registry import MODELS
-from mmdet.utils import OptConfigType
+from mmscene.registry import MODELS
+from mmscene.utils import OptConfigType
 
 
 def variance_scaling_trunc(tensor, gain=1.):

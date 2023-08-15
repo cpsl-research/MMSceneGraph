@@ -4,10 +4,10 @@ import pytest
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.utils import (empty_instances, filter_gt_instances,
+from mmscene.models.utils import (empty_instances, filter_gt_instances,
                                 rename_loss_dict, reweight_loss_dict,
                                 unpack_gt_instances)
-from mmdet.testing import demo_mm_inputs
+from mmscene.testing import demo_mm_inputs
 
 
 def test_parse_gt_instance_info():

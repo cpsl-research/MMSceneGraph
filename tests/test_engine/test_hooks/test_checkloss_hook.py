@@ -4,7 +4,7 @@ from unittest.mock import Mock
 
 import torch
 
-from mmdet.engine.hooks import CheckInvalidLossHook
+from mmscene.engine.hooks import CheckInvalidLossHook
 
 
 class TestCheckInvalidLossHook(TestCase):

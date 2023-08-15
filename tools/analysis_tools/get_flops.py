@@ -12,7 +12,7 @@ from mmengine.model import revert_sync_batchnorm
 from mmengine.registry import init_default_scope
 from mmengine.runner import Runner
 
-from mmdet.registry import MODELS
+from mmscene.registry import MODELS
 
 try:
     from mmengine.analysis import get_model_complexity_info

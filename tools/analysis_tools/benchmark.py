@@ -8,7 +8,7 @@ from mmengine.dist import init_dist
 from mmengine.registry import init_default_scope
 from mmengine.utils import mkdir_or_exist
 
-from mmdet.utils.benchmark import (DataLoaderBenchmark, DatasetBenchmark,
+from mmscene.utils.benchmark import (DataLoaderBenchmark, DatasetBenchmark,
                                    InferenceBenchmark)
 
 

@@ -7,8 +7,8 @@ import torch
 from mmengine.fileio import load
 from torch import Tensor
 
-from mmdet.evaluation import DumpDetResults
-from mmdet.structures.mask import encode_mask_results
+from mmscene.evaluation import DumpDetResults
+from mmscene.structures.mask import encode_mask_results
 
 
 class TestDumpResults(TestCase):

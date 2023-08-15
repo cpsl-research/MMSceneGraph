@@ -12,12 +12,12 @@ from mmengine.runner import Runner
 from mmengine.structures import InstanceData, PixelData
 from mmengine.utils import ProgressBar, check_file_exist, mkdir_or_exist
 
-from mmdet.datasets import get_loading_pipeline
-from mmdet.evaluation import eval_map
-from mmdet.registry import DATASETS, RUNNERS
-from mmdet.structures import DetDataSample
-from mmdet.utils import replace_cfg_vals, update_data_root
-from mmdet.visualization import DetLocalVisualizer
+from mmscene.datasets import get_loading_pipeline
+from mmscene.evaluation import eval_map
+from mmscene.registry import DATASETS, RUNNERS
+from mmscene.structures import DetDataSample
+from mmscene.utils import replace_cfg_vals, update_data_root
+from mmscene.visualization import DetLocalVisualizer
 
 
 def bbox_map_eval(det_result, annotation, nproc=4):

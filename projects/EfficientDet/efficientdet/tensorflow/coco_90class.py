@@ -5,8 +5,8 @@ from typing import List, Union
 
 from mmengine.fileio import get_local_path
 
-from mmdet.datasets.base_det_dataset import BaseDetDataset
-from mmdet.registry import DATASETS
+from mmscene.datasets.base_det_dataset import BaseDetDataset
+from mmscene.registry import DATASETS
 from .api_wrappers import COCO
 
 

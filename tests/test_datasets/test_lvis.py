@@ -4,7 +4,7 @@ import unittest
 
 from mmengine.fileio import dump
 
-from mmdet.datasets import LVISV1Dataset, LVISV05Dataset
+from mmscene.datasets import LVISV1Dataset, LVISV05Dataset
 
 try:
     import lvis

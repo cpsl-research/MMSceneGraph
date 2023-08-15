@@ -4,10 +4,10 @@ import warnings
 import numpy as np
 import torch
 
-from mmdet.models.task_modules.coders.delta_xywh_bbox_coder import \
+from mmscene.models.task_modules.coders.delta_xywh_bbox_coder import \
     DeltaXYWHBBoxCoder
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import HorizontalBoxes, get_box_tensor
+from mmscene.registry import TASK_UTILS
+from mmscene.structures.bbox import HorizontalBoxes, get_box_tensor
 
 
 @TASK_UTILS.register_module()
@@ -348,7 +348,7 @@ def YXonnx_delta2bbox(rois,
     if clip_border and max_shape is not None:
         # clip bboxes with dynamic `min` and `max` for onnx
         if torch.onnx.is_in_onnx_export():
-            from mmdet.core.export import dynamic_clip_for_onnx
+            from mmscene.core.export import dynamic_clip_for_onnx
             x1, y1, x2, y2 = dynamic_clip_for_onnx(x1, y1, x2, y2, max_shape)
             bboxes = torch.stack([x1, y1, x2, y2], dim=-1).view(deltas.size())
             return bboxes

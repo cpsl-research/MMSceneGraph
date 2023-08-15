@@ -21,7 +21,7 @@
 ```python
 import torch.nn as nn
 
-from mmdet.registry import MODELS
+from mmscene.registry import MODELS
 
 
 @MODELS.register_module()
@@ -73,7 +73,7 @@ model = dict(
 ```python
 import torch.nn as nn
 
-from mmdet.registry import MODELS
+from mmscene.registry import MODELS
 
 
 @MODELS.register_module()
@@ -136,9 +136,9 @@ from mmcv.cnn import ConvModule
 from mmengine.model import BaseModule, ModuleList
 from torch import Tensor
 
-from mmdet.models.backbones.resnet import Bottleneck
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, MultiConfig, OptConfigType, OptMultiConfig
+from mmscene.models.backbones.resnet import Bottleneck
+from mmscene.registry import MODELS
+from mmscene.utils import ConfigType, MultiConfig, OptConfigType, OptMultiConfig
 from .bbox_head import BBoxHead
 
 
@@ -190,10 +190,10 @@ from typing import List, Optional, Tuple
 import torch
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import DetDataSample
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import ConfigType, InstanceList
+from mmscene.registry import MODELS, TASK_UTILS
+from mmscene.structures import DetDataSample
+from mmscene.structures.bbox import bbox2roi
+from mmscene.utils import ConfigType, InstanceList
 from ..task_modules.samplers import SamplingResult
 from ..utils import empty_instances, unpack_gt_instances
 from .base_roi_head import BaseRoIHead
@@ -254,7 +254,7 @@ from typing import Tuple
 
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from mmscene.registry import MODELS
 from .standard_roi_head import StandardRoIHead
 
 
@@ -357,7 +357,7 @@ Double Head R-CNN 主要使用了一个新的 `DoubleHeadRoIHead` 和一个新�
 import torch
 import torch.nn as nn
 
-from mmdet.registry import LOSSES
+from mmscene.registry import LOSSES
 from .utils import weighted_loss
 
 

@@ -6,8 +6,8 @@ import torch
 from mmengine import Config
 from mmengine.structures import InstanceData
 
-from mmdet import *  # noqa
-from mmdet.models.dense_heads import RPNHead
+from mmscene import *  # noqa
+from mmscene.models.dense_heads import RPNHead
 
 
 class TestRPNHead(TestCase):

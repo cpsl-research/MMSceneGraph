@@ -4,7 +4,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from mmdet.registry import MODELS
+from mmscene.registry import MODELS
 
 
 @MODELS.register_module(force=True)  # avoid bug

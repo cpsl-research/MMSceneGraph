@@ -26,7 +26,7 @@ from argparse import ArgumentParser
 
 from mmengine.logging import print_log
 
-from mmdet.apis import DetInferencer
+from mmscene.apis import DetInferencer
 
 
 def parse_args():

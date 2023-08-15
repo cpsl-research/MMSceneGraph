@@ -315,7 +315,7 @@ python tools/model_converters/upgrade_model_version.py ${IN_FILE} ${OUT_FILE} [-
 
 ### RegNet 模型转换至 MMDetection 模型
 
-`tools/model_converters/regnet2mmdet.py` 将 pycls 编码的预训练 RegNet 模型转换为 MMDetection 风格。
+`tools/model_converters/regnet2mmscene.py` 将 pycls 编码的预训练 RegNet 模型转换为 MMDetection 风格。
 
 ```shell
 python tools/model_converters/regnet2mmdet.py ${SRC} ${DST} [-h]

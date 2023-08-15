@@ -5,8 +5,8 @@ import pytest
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.dense_heads import EmbeddingRPNHead
-from mmdet.structures import DetDataSample
+from mmscene.models.dense_heads import EmbeddingRPNHead
+from mmscene.structures import DetDataSample
 
 
 class TestEmbeddingRPNHead(TestCase):

@@ -2,8 +2,8 @@ import numpy as np
 import pytest
 import torch
 
-from mmdet.utils import AvoidOOM
-from mmdet.utils.memory import cast_tensor_type
+from mmscene.utils import AvoidOOM
+from mmscene.utils.memory import cast_tensor_type
 
 
 def test_avoidoom():

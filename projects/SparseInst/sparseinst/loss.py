@@ -6,8 +6,8 @@ import torch.nn.functional as F
 from scipy.optimize import linear_sum_assignment
 from torch.cuda.amp import autocast
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.utils import reduce_mean
+from mmscene.registry import MODELS, TASK_UTILS
+from mmscene.utils import reduce_mean
 
 
 def compute_mask_iou(inputs, targets):

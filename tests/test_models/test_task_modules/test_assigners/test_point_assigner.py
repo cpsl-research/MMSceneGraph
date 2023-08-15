@@ -5,7 +5,7 @@ import torch
 from mmengine.structures import InstanceData
 from mmengine.testing import assert_allclose
 
-from mmdet.models.task_modules.assigners import PointAssigner
+from mmscene.models.task_modules.assigners import PointAssigner
 
 
 class TestPointAssigner(unittest.TestCase):

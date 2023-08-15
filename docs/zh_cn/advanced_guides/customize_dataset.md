@@ -262,8 +262,8 @@ model = dict(
 
 ```python
 import mmengine
-from mmdet.base_det_dataset import BaseDetDataset
-from mmdet.registry import DATASETS
+from mmscene.base_det_dataset import BaseDetDataset
+from mmscene.registry import DATASETS
 
 
 @DATASETS.register_module()

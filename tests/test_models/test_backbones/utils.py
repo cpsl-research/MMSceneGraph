@@ -2,10 +2,10 @@
 from torch.nn.modules import GroupNorm
 from torch.nn.modules.batchnorm import _BatchNorm
 
-from mmdet.models.backbones.res2net import Bottle2neck
-from mmdet.models.backbones.resnet import BasicBlock, Bottleneck
-from mmdet.models.backbones.resnext import Bottleneck as BottleneckX
-from mmdet.models.layers import SimplifiedBasicBlock
+from mmscene.models.backbones.res2net import Bottle2neck
+from mmscene.models.backbones.resnet import BasicBlock, Bottleneck
+from mmscene.models.backbones.resnext import Bottleneck as BottleneckX
+from mmscene.models.layers import SimplifiedBasicBlock
 
 
 def is_block(modules):

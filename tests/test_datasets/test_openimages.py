@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import unittest
 
-from mmdet.datasets import OpenImagesChallengeDataset, OpenImagesDataset
+from mmscene.datasets import OpenImagesChallengeDataset, OpenImagesDataset
 
 
 class TestOpenImagesDataset(unittest.TestCase):

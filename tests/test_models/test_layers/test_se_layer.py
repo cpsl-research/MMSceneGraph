@@ -4,7 +4,7 @@ import torch
 import torch.nn.functional as F
 from mmengine.model import constant_init
 
-from mmdet.models.layers import DyReLU, SELayer
+from mmscene.models.layers import DyReLU, SELayer
 
 
 def test_se_layer():

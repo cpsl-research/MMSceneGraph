@@ -12,9 +12,9 @@ from mmengine.structures import InstanceData
 from mmengine.utils import is_list_of
 from parameterized import parameterized
 
-from mmdet.apis import DetInferencer
-from mmdet.evaluation.functional import get_classes
-from mmdet.structures import DetDataSample
+from mmscene.apis import DetInferencer
+from mmscene.evaluation.functional import get_classes
+from mmscene.structures import DetDataSample
 
 
 class TestDetInferencer(TestCase):

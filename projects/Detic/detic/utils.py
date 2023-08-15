@@ -38,19 +38,19 @@ def get_text_embeddings(dataset=None,
 
 def get_class_names(dataset):
     if dataset == 'coco':
-        from mmdet.datasets import CocoDataset
+        from mmscene.datasets import CocoDataset
         class_names = CocoDataset.METAINFO['classes']
     elif dataset == 'cityscapes':
-        from mmdet.datasets import CityscapesDataset
+        from mmscene.datasets import CityscapesDataset
         class_names = CityscapesDataset.METAINFO['classes']
     elif dataset == 'voc':
-        from mmdet.datasets import VOCDataset
+        from mmscene.datasets import VOCDataset
         class_names = VOCDataset.METAINFO['classes']
     elif dataset == 'openimages':
-        from mmdet.datasets import OpenImagesDataset
+        from mmscene.datasets import OpenImagesDataset
         class_names = OpenImagesDataset.METAINFO['classes']
     elif dataset == 'lvis':
-        from mmdet.datasets import LVISV1Dataset
+        from mmscene.datasets import LVISV1Dataset
         class_names = LVISV1Dataset.METAINFO['classes']
     else:
         raise TypeError(f'Invalid type for dataset name: {type(dataset)}')

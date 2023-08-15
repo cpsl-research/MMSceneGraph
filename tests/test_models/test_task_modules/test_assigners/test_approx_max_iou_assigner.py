@@ -4,7 +4,7 @@ from unittest import TestCase
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.task_modules.assigners import ApproxMaxIoUAssigner
+from mmscene.models.task_modules.assigners import ApproxMaxIoUAssigner
 
 
 class TestApproxIoUAssigner(TestCase):

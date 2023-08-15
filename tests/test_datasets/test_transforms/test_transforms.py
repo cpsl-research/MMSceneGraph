@@ -9,7 +9,7 @@ import torch
 from mmcv.transforms import LoadImageFromFile
 
 # yapf:disable
-from mmdet.datasets.transforms import (CopyPaste, CutOut, Expand,
+from mmscene.datasets.transforms import (CopyPaste, CutOut, Expand,
                                        FixShapeResize, MinIoURandomCrop, MixUp,
                                        Mosaic, Pad, PhotoMetricDistortion,
                                        RandomAffine, RandomCenterCropPad,
@@ -17,10 +17,10 @@ from mmdet.datasets.transforms import (CopyPaste, CutOut, Expand,
                                        RandomShift, Resize, SegRescale,
                                        YOLOXHSVRandomAug)
 # yapf:enable
-from mmdet.evaluation import bbox_overlaps
-from mmdet.registry import TRANSFORMS
-from mmdet.structures.bbox import HorizontalBoxes, bbox_project
-from mmdet.structures.mask import BitmapMasks
+from mmscene.evaluation import bbox_overlaps
+from mmscene.registry import TRANSFORMS
+from mmscene.structures.bbox import HorizontalBoxes, bbox_project
+from mmscene.structures.mask import BitmapMasks
 from .utils import construct_toy_data, create_full_masks, create_random_bboxes
 
 try:

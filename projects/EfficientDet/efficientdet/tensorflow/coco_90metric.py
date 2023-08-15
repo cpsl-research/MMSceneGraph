@@ -12,9 +12,9 @@ from mmengine.fileio import dump, get_local_path, load
 from mmengine.logging import MMLogger
 from terminaltables import AsciiTable
 
-from mmdet.evaluation.functional import eval_recalls
-from mmdet.registry import METRICS
-from mmdet.structures.mask import encode_mask_results
+from mmscene.evaluation.functional import eval_recalls
+from mmscene.registry import METRICS
+from mmscene.structures.mask import encode_mask_results
 from .api_wrappers import COCO, COCOeval
 
 

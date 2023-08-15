@@ -25,10 +25,10 @@ To use a self-supervisely pretrained backbone, there are two steps to do:
 
 ### Convert model
 
-For more general usage, we also provide script `selfsup2mmdet.py` in the tools directory to convert the key of models pretrained by different self-supervised methods to PyTorch-style checkpoints used in MMDetection.
+For more general usage, we also provide script `selfsup2mmscene.py` in the tools directory to convert the key of models pretrained by different self-supervised methods to PyTorch-style checkpoints used in MMDetection.
 
 ```bash
-python -u tools/model_converters/selfsup2mmdet.py ${PRETRAIN_PATH} ${STORE_PATH} --selfsup ${method}
+python -u tools/model_converters/selfsup2mmscene.py ${PRETRAIN_PATH} ${STORE_PATH} --selfsup ${method}
 ```
 
 This script convert model from `PRETRAIN_PATH` and store the converted model in `STORE_PATH`.
@@ -36,7 +36,7 @@ This script convert model from `PRETRAIN_PATH` and store the converted model in 
 For example, to use a ResNet-50 backbone released by MoCo, you can download it from [here](https://dl.fbaipublicfiles.com/moco/moco_checkpoints/moco_v2_800ep/moco_v2_800ep_pretrain.pth.tar) and use the following command
 
 ```bash
-python -u tools/model_converters/selfsup2mmdet.py ./moco_v2_800ep_pretrain.pth.tar mocov2_r50_800ep_pretrain.pth --selfsup moco
+python -u tools/model_converters/selfsup2mmscene.py ./moco_v2_800ep_pretrain.pth.tar mocov2_r50_800ep_pretrain.pth --selfsup moco
 ```
 
 To use the ResNet-50 backbone released by SwAV, you can download it from [here](https://dl.fbaipublicfiles.com/deepcluster/swav_800ep_pretrain.pth.tar)

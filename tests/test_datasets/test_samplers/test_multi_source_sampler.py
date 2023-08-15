@@ -7,7 +7,7 @@ from unittest.mock import patch
 import numpy as np
 from torch.utils.data import ConcatDataset, Dataset
 
-from mmdet.datasets.samplers import GroupMultiSourceSampler, MultiSourceSampler
+from mmscene.datasets.samplers import GroupMultiSourceSampler, MultiSourceSampler
 
 
 class DummyDataset(Dataset):

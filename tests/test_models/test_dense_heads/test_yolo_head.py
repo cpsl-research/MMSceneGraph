@@ -5,7 +5,7 @@ import torch
 from mmengine.config import Config
 from mmengine.structures import InstanceData
 
-from mmdet.models.dense_heads import YOLOV3Head
+from mmscene.models.dense_heads import YOLOV3Head
 
 
 class TestYOLOV3Head(TestCase):

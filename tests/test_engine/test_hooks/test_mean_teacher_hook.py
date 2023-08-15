@@ -12,8 +12,8 @@ from mmengine.registry import MODEL_WRAPPERS
 from mmengine.runner import Runner
 from torch.utils.data import Dataset
 
-from mmdet.registry import DATASETS
-from mmdet.utils import register_all_modules
+from mmscene.registry import DATASETS
+from mmscene.utils import register_all_modules
 
 register_all_modules()
 

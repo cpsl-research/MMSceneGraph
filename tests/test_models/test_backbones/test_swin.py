@@ -1,7 +1,7 @@
 import pytest
 import torch
 
-from mmdet.models.backbones.swin import SwinBlock, SwinTransformer
+from mmscene.models.backbones.swin import SwinBlock, SwinTransformer
 
 
 def test_swin_block():

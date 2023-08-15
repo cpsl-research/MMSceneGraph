@@ -5,14 +5,14 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.roi_heads import CascadeRoIHead
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.models.test_time_augs import merge_aug_masks
-from mmdet.models.utils.misc import empty_instances
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import bbox2roi, get_box_tensor
-from mmdet.utils import ConfigType, InstanceList, MultiConfig
+from mmscene.models.roi_heads import CascadeRoIHead
+from mmscene.models.task_modules.samplers import SamplingResult
+from mmscene.models.test_time_augs import merge_aug_masks
+from mmscene.models.utils.misc import empty_instances
+from mmscene.registry import MODELS
+from mmscene.structures import SampleList
+from mmscene.structures.bbox import bbox2roi, get_box_tensor
+from mmscene.utils import ConfigType, InstanceList, MultiConfig
 
 
 @MODELS.register_module(force=True)  # avoid bug

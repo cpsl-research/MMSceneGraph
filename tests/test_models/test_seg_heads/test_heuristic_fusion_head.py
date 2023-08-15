@@ -5,8 +5,8 @@ from mmengine.config import Config
 from mmengine.structures import InstanceData
 from mmengine.testing import assert_allclose
 
-from mmdet.evaluation import INSTANCE_OFFSET
-from mmdet.models.seg_heads.panoptic_fusion_heads import HeuristicFusionHead
+from mmscene.evaluation import INSTANCE_OFFSET
+from mmscene.models.seg_heads.panoptic_fusion_heads import HeuristicFusionHead
 
 
 class TestHeuristicFusionHead(unittest.TestCase):

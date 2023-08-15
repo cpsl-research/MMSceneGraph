@@ -4,10 +4,10 @@ from unittest import TestCase
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.testing import get_detector_cfg
-from mmdet.utils import register_all_modules
+from mmscene.registry import MODELS
+from mmscene.structures import DetDataSample
+from mmscene.testing import get_detector_cfg
+from mmscene.utils import register_all_modules
 
 
 class TestDINO(TestCase):

@@ -2,7 +2,7 @@
 import pytest
 import torch
 
-from mmdet.models.task_modules.coders import DeltaXYWHBBoxCoder
+from mmscene.models.task_modules.coders import DeltaXYWHBBoxCoder
 
 
 def test_delta_bbox_coder():

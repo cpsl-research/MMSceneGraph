@@ -2,7 +2,7 @@ import unittest
 
 import torch
 
-from mmdet.models.roi_heads.roi_extractors import SingleRoIExtractor
+from mmscene.models.roi_heads.roi_extractors import SingleRoIExtractor
 
 
 class TestSingleRoIExtractor(unittest.TestCase):

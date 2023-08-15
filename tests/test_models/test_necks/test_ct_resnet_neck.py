@@ -3,7 +3,7 @@ import unittest
 
 import torch
 
-from mmdet.models.necks import CTResNetNeck
+from mmscene.models.necks import CTResNetNeck
 
 
 class TestCTResNetNeck(unittest.TestCase):

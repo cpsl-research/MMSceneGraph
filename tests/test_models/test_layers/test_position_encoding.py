@@ -2,7 +2,7 @@
 import pytest
 import torch
 
-from mmdet.models.layers import (LearnedPositionalEncoding,
+from mmscene.models.layers import (LearnedPositionalEncoding,
                                  SinePositionalEncoding)
 
 

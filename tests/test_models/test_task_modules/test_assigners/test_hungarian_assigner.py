@@ -5,7 +5,7 @@ import torch
 from mmengine import ConfigDict
 from mmengine.structures import InstanceData
 
-from mmdet.models.task_modules.assigners import HungarianAssigner
+from mmscene.models.task_modules.assigners import HungarianAssigner
 
 
 class TestHungarianAssigner(TestCase):

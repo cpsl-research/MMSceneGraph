@@ -7,10 +7,10 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from parameterized import parameterized
 
-from mmdet.models.roi_heads.mask_heads import MaskIoUHead
-from mmdet.models.utils import unpack_gt_instances
-from mmdet.structures.mask import mask_target
-from mmdet.testing import (demo_mm_inputs, demo_mm_proposals,
+from mmscene.models.roi_heads.mask_heads import MaskIoUHead
+from mmscene.models.utils import unpack_gt_instances
+from mmscene.structures.mask import mask_target
+from mmscene.testing import (demo_mm_inputs, demo_mm_proposals,
                            demo_mm_sampling_results)
 
 

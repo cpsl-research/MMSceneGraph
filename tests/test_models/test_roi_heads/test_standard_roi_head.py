@@ -6,9 +6,9 @@ import torch
 from mmengine.config import Config
 from parameterized import parameterized
 
-from mmdet.registry import MODELS
-from mmdet.testing import demo_mm_inputs, demo_mm_proposals
-from mmdet.utils import register_all_modules
+from mmscene.registry import MODELS
+from mmscene.testing import demo_mm_inputs, demo_mm_proposals
+from mmscene.utils import register_all_modules
 
 register_all_modules()
 

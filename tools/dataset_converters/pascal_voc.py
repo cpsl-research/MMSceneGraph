@@ -7,7 +7,7 @@ import numpy as np
 from mmengine.fileio import dump, list_from_file
 from mmengine.utils import mkdir_or_exist, track_progress
 
-from mmdet.evaluation import voc_classes
+from mmscene.evaluation import voc_classes
 
 label_ids = {name: i for i, name in enumerate(voc_classes())}
 

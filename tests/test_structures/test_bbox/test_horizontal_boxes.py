@@ -7,8 +7,8 @@ import numpy as np
 import torch
 from mmengine.testing import assert_allclose
 
-from mmdet.structures.bbox import HorizontalBoxes
-from mmdet.structures.mask import BitmapMasks, PolygonMasks
+from mmscene.structures.bbox import HorizontalBoxes
+from mmscene.structures.mask import BitmapMasks, PolygonMasks
 
 
 class TestHorizontalBoxes(TestCase):

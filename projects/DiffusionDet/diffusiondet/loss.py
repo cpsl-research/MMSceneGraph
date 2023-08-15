@@ -15,9 +15,9 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import bbox_cxcywh_to_xyxy, bbox_xyxy_to_cxcywh
-from mmdet.utils import ConfigType
+from mmscene.registry import MODELS, TASK_UTILS
+from mmscene.structures.bbox import bbox_cxcywh_to_xyxy, bbox_xyxy_to_cxcywh
+from mmscene.utils import ConfigType
 
 
 @TASK_UTILS.register_module()

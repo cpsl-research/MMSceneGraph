@@ -5,9 +5,9 @@ from unittest import TestCase
 import torch
 from mmengine.config import ConfigDict
 
-from mmdet.structures import DetDataSample
-from mmdet.testing import demo_mm_inputs, get_detector_cfg
-from mmdet.utils import register_all_modules
+from mmscene.structures import DetDataSample
+from mmscene.testing import demo_mm_inputs, get_detector_cfg
+from mmscene.utils import register_all_modules
 
 
 class TestCornerNet(TestCase):
@@ -44,7 +44,7 @@ class TestCornerNet(TestCase):
             'cornernet/cornernet_hourglass104_8xb6-210e-mstest_coco.py')
         model.backbone.init_cfg = None
 
-        from mmdet.registry import MODELS
+        from mmscene.registry import MODELS
         detector = MODELS.build(model)
         self.assertTrue(detector.bbox_head is not None)
         self.assertTrue(detector.backbone is not None)
@@ -53,7 +53,7 @@ class TestCornerNet(TestCase):
     @unittest.skipIf(not torch.cuda.is_available(),
                      'test requires GPU and torch+cuda')
     def test_cornernet_forward_loss_mode(self):
-        from mmdet.registry import MODELS
+        from mmscene.registry import MODELS
         detector = MODELS.build(self.model_cfg)
         detector.init_weights()
 
@@ -65,7 +65,7 @@ class TestCornerNet(TestCase):
     @unittest.skipIf(not torch.cuda.is_available(),
                      'test requires GPU and torch+cuda')
     def test_cornernet_forward_predict_mode(self):
-        from mmdet.registry import MODELS
+        from mmscene.registry import MODELS
         detector = MODELS.build(self.model_cfg)
         detector.init_weights()
 
@@ -82,7 +82,7 @@ class TestCornerNet(TestCase):
     @unittest.skipIf(not torch.cuda.is_available(),
                      'test requires GPU and torch+cuda')
     def test_cornernet_forward_tensor_mode(self):
-        from mmdet.registry import MODELS
+        from mmscene.registry import MODELS
         detector = MODELS.build(self.model_cfg)
         detector.init_weights()
 
