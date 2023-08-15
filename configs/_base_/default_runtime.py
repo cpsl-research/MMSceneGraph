@@ -1,4 +1,4 @@
-default_scope = 'mmdet'
+default_scope = 'mmscene'
 
 default_hooks = dict(
     timer=dict(type='IterTimerHook'),

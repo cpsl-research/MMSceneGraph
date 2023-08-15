@@ -19,7 +19,7 @@ def readme():
     return content
 
 
-version_file = 'mmdet/version.py'
+version_file = 'mmscene/version.py'
 
 
 def get_version():
