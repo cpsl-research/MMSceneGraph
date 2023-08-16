@@ -1,6 +1,6 @@
-# from .motifnet_head import MotifNetHead
+from .motifnet_head import MotifNetHead
 
 
-# __all__ = [
-#     'MotifNetHead',
-# ]
+__all__ = [
+    'MotifNetHead',
+]
