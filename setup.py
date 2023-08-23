@@ -156,7 +156,7 @@ def add_mim_extension():
 
     filenames = ['tools', 'configs', 'demo', 'model-index.yml']
     repo_path = osp.dirname(__file__)
-    mim_path = osp.join(repo_path, 'mmdet', '.mim')
+    mim_path = osp.join(repo_path, 'mmscene', '.mim')
     os.makedirs(mim_path, exist_ok=True)
 
     for filename in filenames:
@@ -186,7 +186,7 @@ def add_mim_extension():
 if __name__ == '__main__':
     add_mim_extension()
     setup(
-        name='mmdet',
+        name='mmscene',
         version=get_version(),
         description='OpenMMLab Detection Toolbox and Benchmark',
         long_description=readme(),
