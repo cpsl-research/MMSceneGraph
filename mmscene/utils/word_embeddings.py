@@ -1,80 +1,43 @@
-import torch
-import six
-from six.moves.urllib.request import urlretrieve
-import sys
+# ---------------------------------------------------------------
+# word_embeddings.py
+# Set-up time: 2020/12/6 21:31
+# Copyright (c) 2020 ICT
+# Licensed under The MIT License [see LICENSE for details]
+# Written by Kenneth-Wong (Wenbin-Wang) @ VIPL.ICT
+# Contact: wenbin.wang@vipl.ict.ac.cn [OR] nkwangwenbin@gmail.com
+# ---------------------------------------------------------------
 import array
 import os
 import zipfile
+
+import six
+import torch
+from six.moves.urllib.request import urlretrieve
 from tqdm import tqdm
 
-from mmscene.utils import reporthook
+import sys
 
+URL = {
+        'glove.42B': 'http://nlp.stanford.edu/data/glove.42B.300d.zip',
+        'glove.840B': 'http://nlp.stanford.edu/data/glove.840B.300d.zip',
+        'glove.twitter.27B': 'http://nlp.stanford.edu/data/glove.twitter.27B.zip',
+        'glove.6B': 'http://nlp.stanford.edu/data/glove.6B.zip',
+        }
 
-class RelationSampler:
-    pass
+def obj_edge_vectors(names, wv_dict, wv_arr, wv_size):
+    #wv_dict, wv_arr, wv_size = load_word_vectors(wv_dir, wv_type, wv_dim)
 
-class PostProcessor:
-    pass
-
-def get_weak_key_rel_labels():
-    pass
-
-
-def to_onehot(vec, num_classes, fill=1000):
-    """
-    Creates a [size, num_classes] torch FloatTensor where
-    one_hot[i, vec[i]] = fill
-
-    :param vec: 1d torch tensor
-    :param num_classes: int
-    :param fill: value that we want + and - things to be.
-    :return:
-    """
-    onehot_result = vec.new(vec.size(0), num_classes).float().fill_(-fill)
-    arange_inds = vec.new(vec.size(0)).long()
-    torch.arange(0, vec.size(0), out=arange_inds)
-
-    onehot_result.view(-1)[vec.long() + num_classes * arange_inds] = fill
-    return onehot_result
-
-
-def encode_box_info(infostruct):
-    """
-    encode proposed box information (x1, y1, x2, y2) to
-    (cx/wid, cy/hei, w/wid, h/hei, x1/wid, y1/hei, x2/wid, y2/hei, wh/wid*hei)
-    """
-    bboxes, img_shapes = infostruct.bboxes, infostruct.img_shape
-    boxes_info = []
-    for bbox, img_shape in zip(bboxes, img_shapes):
-        wid = img_shape[1]
-        hei = img_shape[0]
-        wh = bbox[:, 2:4] - bbox[:, 0:2] + 1.0
-        xy = bbox[:, 0:2] + 0.5 * wh
-        w, h = wh[:, 0], wh[:, 1]
-        x, y = xy[:, 0], xy[:, 1]
-        x1, y1, x2, y2 = bbox[:, 0], bbox[:, 1], bbox[:, 2], bbox[:, 3]
-        assert wid * hei != 0
-        info = torch.stack([w / wid, h / hei, x / wid, y / hei, x1 / wid, y1 / hei, x2 / wid, y2 / hei,
-                          w * h / (wid * hei)], dim=-1).view(-1, 9)
-        boxes_info.append(info)
-
-    return torch.cat(boxes_info, dim=0)
-
-
-def obj_edge_vectors(names, wv_dir, wv_type='glove.6B', wv_dim=300):
-    wv_dict, wv_arr, wv_size = load_word_vectors(wv_dir, wv_type, wv_dim)
-
-    vectors = torch.Tensor(len(names), wv_dim)
-    vectors.normal_(0, 1)
+    vectors = torch.Tensor(len(names), wv_size)
+    vectors.normal_(0,1)
 
     for i, token in enumerate(names):
         wv_index = wv_dict.get(token, None)
         if wv_index is not None:
             vectors[i] = wv_arr[wv_index]
         else:
-            # Try the longest word
+            # Try the longest word (hopefully won't be a preposition
             lw_token = sorted(token.split(' '), key=lambda x: len(x), reverse=True)[0]
-            print("{} -> {} ".format(token, lw_token))
+            #print("{} -> {} ".format(token, lw_token))
             wv_index = wv_dict.get(lw_token, None)
             if wv_index is not None:
                 vectors[i] = wv_arr[wv_index]
@@ -83,26 +46,30 @@ def obj_edge_vectors(names, wv_dir, wv_type='glove.6B', wv_dim=300):
 
     return vectors
 
-
 def load_word_vectors(root, wv_type, dim):
     """Load word vectors from a path, trying .pt, .txt, and .zip extensions."""
-    URL = {
-        'glove.42B': 'http://nlp.stanford.edu/data/glove.42B.300d.zip',
-        'glove.840B': 'http://nlp.stanford.edu/data/glove.840B.300d.zip',
-        'glove.twitter.27B': 'http://nlp.stanford.edu/data/glove.twitter.27B.zip',
-        'glove.6B': 'http://nlp.stanford.edu/data/glove.6B.zip',
-    }
     if isinstance(dim, int):
         dim = str(dim) + 'd'
     fname = os.path.join(root, wv_type + '.' + dim)
-
     if os.path.isfile(fname + '.pt'):
         fname_pt = fname + '.pt'
-        print('loading word vectors from', fname_pt)
+        #print('loading word vectors from', fname_pt)
         try:
-            return torch.load(fname_pt, map_location=torch.device("cpu"))
+            return torch.load(fname_pt)
         except Exception as e:
-            print("Error loading the model from {}{}".format(fname_pt, str(e)))
+            print("""
+                Error loading the model from {}
+
+                This could be because this code was previously run with one
+                PyTorch version to generate cached data and is now being
+                run with another version.
+                You can try to delete the cached files on disk (this file
+                  and others) and re-running the code
+
+                Error message:
+                ---------
+                {}
+                """.format(fname_pt, str(e)))
             sys.exit(-1)
     if os.path.isfile(fname + '.txt'):
         fname_txt = fname + '.txt'
@@ -146,3 +113,22 @@ def load_word_vectors(root, wv_type, dim):
     ret = (wv_dict, wv_arr, wv_size)
     torch.save(ret, fname + '.pt')
     return ret
+
+def reporthook(t):
+    """https://github.com/tqdm/tqdm"""
+    last_b = [0]
+
+    def inner(b=1, bsize=1, tsize=None):
+        """
+        b: int, optionala
+        Number of blocks just transferred [default: 1].
+        bsize: int, optional
+        Size of each block (in tqdm units) [default: 1].
+        tsize: int, optional
+        Total size (in tqdm units). If [default: None] remains unchanged.
+        """
+        if tsize is not None:
+            t.total = tsize
+        t.update((b - last_b[0]) * bsize)
+        last_b[0] = b
+    return inner

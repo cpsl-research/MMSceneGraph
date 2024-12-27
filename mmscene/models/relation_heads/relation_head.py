@@ -1,10 +1,11 @@
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
-from mmengine.model import BaseModule
+from mmengine.model import BaseModule, normal_init, xavier_init
 
-from mmscene.registry import MODELS
+from mmscene.registry import MODELS, DATASETS
 from mmscene.models.losses import accuracy
-
+from mmscene.evaluation.functional import get_classes, get_predicates, get_attributes
 import os
 import copy
 import itertools
@@ -13,7 +14,6 @@ from mmcv import imresize
 
 from mmscene.structures.bbox import bbox2roi
 
-# from mmscene.core import get_classes, get_predicates, get_attributes
 from .utils import (RelationSampler,
                 PostProcessor, get_weak_key_rel_labels)
 
@@ -25,15 +25,25 @@ class RelationHead(BaseModule):
     """
 
     def __init__(self,
-                 head_config=dict(),
+                 dataset=dict(name=''),
+                 embed_dim=200,
+                 hidden_dim=512,
+                 roi_dim=1024,
+                 dropout_rate=0.2,
+                 context_pooling_dim=4096,
+                 use_gt_box=True,
+                 use_gt_label=True,
+                 use_vision=True,
                  bbox_roi_extractor=None,
                  relation_roi_extractor=None,
                  relation_sampler=None,
                  relation_ranker=None,
                  use_bias=True,
-                 use_statistics=True,
+                 use_statistics=False,
                  num_classes=151,
                  num_predicates=51,
+                 glove_dir='/data/glove',
+                 cache_dir=None,
                  loss_object=dict(type='CrossEntropyLoss',
                                   use_sigmoid=False,
                                   loss_weight=1.0),
@@ -45,15 +55,42 @@ class RelationHead(BaseModule):
         initialized here.
         """
         super(RelationHead, self).__init__(init_cfg)
-
+        if use_gt_box:
+            if use_gt_label:
+                self.mode = 'predcls'
+            else:
+                self.mode = 'sgcls'
+        else:
+            self.mode = 'sgdet'
+        self.use_gt_box = use_gt_box
+        self.use_gt_label = use_gt_label
+        self.use_vision = use_vision
         self.use_bias = use_bias
         self.num_classes = num_classes
         self.num_predicates = num_predicates
+        self.dropout_rate = dropout_rate
+        self.glove_dir = glove_dir
+
+        # object & relation context
+        self.obj_dim = roi_dim
+        self.embed_dim = embed_dim
+        self.hidden_dim = hidden_dim
+        self.context_pooling_dim = context_pooling_dim
+
+        self.pred_layer = nn.Linear(self.obj_dim + self.embed_dim + 128, self.num_classes)
+        self.fc_layer = nn.Linear(self.obj_dim + self.embed_dim + 128, self.hidden_dim)
+
+        # post decoding
+        self.post_emb = nn.Linear(hidden_dim, context_pooling_dim * 2)
+        self.rel_compress = nn.Linear(context_pooling_dim, self.num_predicates, bias=False)
+
+        if self.context_pooling_dim != roi_dim:
+            self.union_single_not_match = True
+            self.up_dim = nn.Linear(roi_dim, context_pooling_dim)
+        else:
+            self.union_single_not_match = False
 
         # upgrade some submodule attribute to this head
-        self.head_config = head_config
-        self.use_gt_box = self.head_config.use_gt_box
-        self.use_gt_label = self.head_config.use_gt_label
         self.with_visual_bbox = (bbox_roi_extractor is not None and bbox_roi_extractor.with_visual_bbox) or \
                                 (relation_roi_extractor is not None and relation_roi_extractor.with_visual_bbox)
         self.with_visual_mask = (bbox_roi_extractor is not None and bbox_roi_extractor.with_visual_mask) or \
@@ -69,9 +106,9 @@ class RelationHead(BaseModule):
         else:
             self.mode = 'sgdet'
         if bbox_roi_extractor is not None:
-            self.bbox_roi_extractor = build_relation_roi_extractor(bbox_roi_extractor)
+            self.bbox_roi_extractor = MODELS.build(bbox_roi_extractor)
         if relation_roi_extractor is not None:
-            self.relation_roi_extractor = build_relation_roi_extractor(relation_roi_extractor)
+            self.relation_roi_extractor = MODELS.build(relation_roi_extractor)
         if relation_sampler is not None:
             relation_sampler.update(dict(use_gt_box=self.use_gt_box))
             self.relation_sampler = RelationSampler(**relation_sampler)
@@ -85,7 +122,7 @@ class RelationHead(BaseModule):
             self.comb_factor = relation_ranker.pop('comb_factor', 0.5)
             self.area_form = relation_ranker.pop('area_form', 'rect')
             loss_ranking_relation = relation_ranker.pop('loss')
-            self.loss_ranking_relation = build_loss(loss_ranking_relation)
+            self.loss_ranking_relation = MODELS.build(loss_ranking_relation)
             if loss_ranking_relation.type != 'CrossEntropyLoss':
                 num_out = 1
             else:
@@ -94,20 +131,19 @@ class RelationHead(BaseModule):
             self.relation_ranker = eval(ranker)(**relation_ranker)
 
         if loss_object is not None:
-            self.loss_object = build_loss(loss_object)
+            self.loss_object = MODELS.build(loss_object)
 
         if loss_relation is not None:
-            self.loss_relation = build_loss(loss_relation)
+            self.loss_relation = MODELS.build(loss_relation)
 
+        # dataset = DATASETS.build(dataset)
         if use_statistics:
-            cache_dir = dataset_config.pop('cache', None)
             print('Loading Statistics...')
             if cache_dir is None:
                 raise FileNotFoundError('The cache_dir for caching the statistics is not provided.')
             if os.path.exists(cache_dir):
                 statistics = torch.load(cache_dir, map_location=torch.device("cpu"))
             else:
-                dataset = build_dataset(dataset_config)
                 result = dataset.get_statistics()
                 statistics = {
                     'fg_matrix': result['fg_matrix'],
@@ -122,15 +158,15 @@ class RelationHead(BaseModule):
             self.obj_classes, self.rel_classes, self.att_classes = statistics['obj_classes'], statistics['rel_classes'], \
                                                                    statistics['att_classes']
         else:
-            self.obj_classes, self.rel_classes, self.att_classes = get_classes(dataset_config.type), \
-                                                                   get_predicates('visualgenome'), \
-                                                                   get_attributes('visualgenome')
+            self.obj_classes, self.rel_classes, self.att_classes = get_classes(dataset['name']), \
+                                                                   get_predicates(dataset['name']), \
+                                                                   get_attributes(dataset['name'])
             self.obj_classes.insert(0, '__background__')
             self.rel_classes.insert(0, '__background__')
             self.att_classes.insert(0, '__background__')
 
-        assert self.num_classes == len(self.obj_classes)
-        assert self.num_predicates == len(self.rel_classes)
+        assert self.num_classes == len(self.obj_classes), f'{self.num_classes}, {len(self.obj_classes)}'
+        assert self.num_predicates == len(self.rel_classes), f'{self.num_predicates}, {len(self.rel_classes)}'
 
 
     @property
@@ -166,8 +202,11 @@ class RelationHead(BaseModule):
             self.bbox_roi_extractor.init_weights()
         if self.with_relation_roi_extractor:
             self.relation_roi_extractor.init_weights()
-        self.context_layer.init_weights()
-
+        normal_init(self.post_emb, mean=0, std=10.0 * (1.0 / self.hidden_dim) ** 0.5)
+        xavier_init(self.rel_compress)
+        if self.union_single_not_match:
+            xavier_init(self.up_dim)
+    
     def frontend_features(self, img, img_meta, det_result, gt_result):
         bboxes, masks, points = det_result.bboxes, det_result.masks, copy.deepcopy(det_result.points)
 
@@ -213,6 +252,9 @@ class RelationHead(BaseModule):
         union_feats = self.relation_roi_extractor(img, img_meta, rois,
                                                   rel_pair_idx=rel_pair_idxes, masks=masks, points=points)
         return roi_feats + union_feats + (det_result,)
+    
+    def backend_relations(self, **kwargs):
+        raise NotImplementedError
 
     def forward(self, **kwargs):
         raise NotImplementedError

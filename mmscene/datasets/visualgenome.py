@@ -1,7 +1,9 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+import copy
+import os.path as osp
+from typing import List, Union
 
-from typing import List
-import json
+from mmengine.fileio import get_local_path
 
 from mmscene.registry import DATASETS
 from .base_det_dataset import BaseDetDataset
@@ -70,63 +72,66 @@ class VisualGenomeDataset(BaseDetDataset):
              'skateboarding', 'narrow', 'reflective', 'rear', 'khaki', 'extended', 'roman', 'american')
     }
 
-    def filter_data(self) -> List[dict]:
-        """Filter annotations according to filter_cfg.
-
-        Returns:
-            List[dict]: Filtered results.
-        """
-        if self.test_mode:
-            return self.data_list
-
-        if self.filter_cfg is None:
-            return self.data_list
-
-        filter_empty_gt = self.filter_cfg.get('filter_empty_gt', False)
-        min_size = self.filter_cfg.get('min_size', 0)
-
-        # obtain images that contain annotation
-        ids_with_ann = set(data_info['img_id'] for data_info in self.data_list)
-        # obtain images that contain annotations of the required categories
-        ids_in_cat = set()
-        for i, class_id in enumerate(self.cat_ids):
-            ids_in_cat |= set(self.cat_img_map[class_id])
-        # merge the image id sets of the two conditions and use the merged set
-        # to filter out images if self.filter_empty_gt=True
-        ids_in_cat &= ids_with_ann
-
-        valid_data_infos = []
-        for i, data_info in enumerate(self.data_list):
-            img_id = data_info['img_id']
-            width = data_info['width']
-            height = data_info['height']
-            all_is_crowd = all([
-                instance['ignore_flag'] == 1
-                for instance in data_info['instances']
-            ])
-            if filter_empty_gt and (img_id not in ids_in_cat or all_is_crowd):
-                continue
-            if min(width, height) >= min_size:
-                valid_data_infos.append(data_info)
-
-        return valid_data_infos
 
 
-def load_info(dict_file, add_bg=True):
-    """
-    Loads the file containing the visual genome label meanings
-    """
-    info = json.load(open(dict_file, 'r'))
-    if add_bg:
-        info['label_to_idx']['__background__'] = 0
-        info['predicate_to_idx']['__background__'] = 0
-        info['attribute_to_idx']['__background__'] = 0
 
-    class_to_ind = info['label_to_idx']
-    predicate_to_ind = info['predicate_to_idx']
-    attribute_to_ind = info['attribute_to_idx']
-    ind_to_classes = sorted(class_to_ind, key=lambda k: class_to_ind[k])
-    ind_to_predicates = sorted(predicate_to_ind, key=lambda k: predicate_to_ind[k])
-    ind_to_attributes = sorted(attribute_to_ind, key=lambda k: attribute_to_ind[k])
+#     def filter_data(self) -> List[dict]:
+#         """Filter annotations according to filter_cfg.
 
-    return ind_to_classes, ind_to_predicates, ind_to_attributes
+#         Returns:
+#             List[dict]: Filtered results.
+#         """
+#         if self.test_mode:
+#             return self.data_list
+
+#         if self.filter_cfg is None:
+#             return self.data_list
+
+#         filter_empty_gt = self.filter_cfg.get('filter_empty_gt', False)
+#         min_size = self.filter_cfg.get('min_size', 0)
+
+#         # obtain images that contain annotation
+#         ids_with_ann = set(data_info['img_id'] for data_info in self.data_list)
+#         # obtain images that contain annotations of the required categories
+#         ids_in_cat = set()
+#         for i, class_id in enumerate(self.cat_ids):
+#             ids_in_cat |= set(self.cat_img_map[class_id])
+#         # merge the image id sets of the two conditions and use the merged set
+#         # to filter out images if self.filter_empty_gt=True
+#         ids_in_cat &= ids_with_ann
+
+#         valid_data_infos = []
+#         for i, data_info in enumerate(self.data_list):
+#             img_id = data_info['img_id']
+#             width = data_info['width']
+#             height = data_info['height']
+#             all_is_crowd = all([
+#                 instance['ignore_flag'] == 1
+#                 for instance in data_info['instances']
+#             ])
+#             if filter_empty_gt and (img_id not in ids_in_cat or all_is_crowd):
+#                 continue
+#             if min(width, height) >= min_size:
+#                 valid_data_infos.append(data_info)
+
+#         return valid_data_infos
+
+
+# def load_info(dict_file, add_bg=True):
+#     """
+#     Loads the file containing the visual genome label meanings
+#     """
+#     info = json.load(open(dict_file, 'r'))
+#     if add_bg:
+#         info['label_to_idx']['__background__'] = 0
+#         info['predicate_to_idx']['__background__'] = 0
+#         info['attribute_to_idx']['__background__'] = 0
+
+#     class_to_ind = info['label_to_idx']
+#     predicate_to_ind = info['predicate_to_idx']
+#     attribute_to_ind = info['attribute_to_idx']
+#     ind_to_classes = sorted(class_to_ind, key=lambda k: class_to_ind[k])
+#     ind_to_predicates = sorted(predicate_to_ind, key=lambda k: predicate_to_ind[k])
+#     ind_to_attributes = sorted(attribute_to_ind, key=lambda k: attribute_to_ind[k])
+
+#     return ind_to_classes, ind_to_predicates, ind_to_attributes

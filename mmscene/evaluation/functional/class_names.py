@@ -485,6 +485,67 @@ def objects365v2_classes() -> list:
     ]
 
 
+def visualgenome_classes() -> list:
+    """VG 150 classes"""
+    return [
+        'airplane', 'animal', 'arm', 'bag', 'banana', 'basket', 'beach', 'bear', 'bed', 'bench', 'bike', 'bird',
+        'board',
+        'boat', 'book', 'boot', 'bottle', 'bowl', 'box', 'boy', 'branch', 'building', 'bus', 'cabinet', 'cap', 'car',
+        'cat',
+        'chair', 'child', 'clock', 'coat', 'counter', 'cow', 'cup', 'curtain', 'desk', 'dog', 'door', 'drawer', 'ear',
+        'elephant', 'engine', 'eye', 'face', 'fence', 'finger', 'flag', 'flower', 'food', 'fork', 'fruit', 'giraffe',
+        'girl', 'glass', 'glove', 'guy', 'hair', 'hand', 'handle', 'hat', 'head', 'helmet', 'hill', 'horse', 'house',
+        'jacket', 'jean', 'kid', 'kite', 'lady', 'lamp', 'laptop', 'leaf', 'leg', 'letter', 'light', 'logo', 'man',
+        'men',
+        'motorcycle', 'mountain', 'mouth', 'neck', 'nose', 'number', 'orange', 'pant', 'paper', 'paw', 'people',
+        'person',
+        'phone', 'pillow', 'pizza', 'plane', 'plant', 'plate', 'player', 'pole', 'post', 'pot', 'racket', 'railing',
+        'rock',
+        'roof', 'room', 'screen', 'seat', 'sheep', 'shelf', 'shirt', 'shoe', 'short', 'sidewalk', 'sign', 'sink',
+        'skateboard', 'ski', 'skier', 'sneaker', 'snow', 'sock', 'stand', 'street', 'surfboard', 'table', 'tail', 'tie',
+        'tile', 'tire', 'toilet', 'towel', 'tower', 'track', 'train', 'tree', 'truck', 'trunk', 'umbrella', 'vase',
+        'vegetable', 'vehicle', 'wave', 'wheel', 'window', 'windshield', 'wing', 'wire', 'woman', 'zebra'
+    ]
+
+
+def visualgenome_predicates() -> list:
+    """VG 150 predicates. (50 predicates) """
+    return [
+        'above', 'across', 'against', 'along', 'and', 'at', 'attached to', 'behind', 'belonging to', 'between',
+        'carrying',
+        'covered in', 'covering', 'eating', 'flying in', 'for', 'from', 'growing on', 'hanging from', 'has', 'holding',
+        'in',
+        'in front of', 'laying on', 'looking at', 'lying on', 'made of', 'mounted on', 'near', 'of', 'on', 'on back of',
+        'over', 'painted on', 'parked on', 'part of', 'playing', 'riding', 'says', 'sitting on', 'standing on', 'to',
+        'under',
+        'using', 'walking in', 'walking on', 'watching', 'wearing', 'wears', 'with'
+    ]
+
+
+def visualgenome_attributes() -> list:
+    """VG 200 attributes, collected by TDE (Kaihua Tang et.al., CVPR2020) """
+    return [
+        'white', 'black', 'blue', 'green', 'red', 'brown', 'yellow', 'small', 'large', 'wooden',
+        'silver', 'orange', 'grey', 'tall', 'long', 'dark', 'pink', 'standing', 'round', 'tan', 'glass', 'here',
+        'wood', 'open', 'purple', 'short', 'plastic', 'parked', 'sitting', 'walking', 'striped', 'brick', 'young',
+        'gold', 'old', 'hanging', 'empty', 'on', 'bright', 'concrete', 'cloudy', 'colorful', 'one', 'beige', 'bare',
+        'wet', 'light', 'square', 'closed', 'stone', 'shiny', 'thin', 'dirty', 'flying', 'smiling', 'painted',
+        'thick', 'part', 'sliced', 'playing', 'tennis', 'calm', 'leather', 'distant', 'rectangular', 'looking',
+        'grassy', 'dry', 'cement', 'leafy', 'wearing', 'tiled', "man's", 'baseball', 'cooked', 'pictured', 'curved',
+        'decorative', 'dead', 'eating', 'paper', 'paved', 'fluffy', 'lit', 'back', 'framed', 'plaid', 'dirt',
+        'watching', 'colored', 'stuffed', 'clean', 'in the picture', 'steel', 'stacked', 'covered', 'full', 'three',
+        'street', 'flat', 'baby', 'black and white', 'beautiful', 'ceramic', 'present', 'grazing', 'sandy',
+        'golden', 'blurry', 'side', 'chocolate', 'wide', 'growing', 'chrome', 'cut', 'bent', 'train', 'holding',
+        'water', 'up', 'arched', 'metallic', 'spotted', 'folded', 'electrical', 'pointy', 'running', 'leafless',
+        'electric', 'in background', 'rusty', 'furry', 'traffic', 'ripe', 'behind', 'laying', 'rocky', 'tiny',
+        'down', 'fresh', 'floral', 'stainless steel', 'high', 'surfing', 'close', 'off', 'leaning', 'moving',
+        'multicolored', "woman's", 'pair', 'huge', 'some', 'background', 'chain link', 'checkered', 'top', 'tree',
+        'broken', 'maroon', 'iron', 'worn', 'patterned', 'ski', 'overcast', 'waiting', 'rubber', 'riding', 'skinny',
+        'grass', 'porcelain', 'adult', 'wire', 'cloudless', 'curly', 'cardboard', 'jumping', 'tile', 'pointed',
+        'blond', 'cream', 'four', 'male', 'smooth', 'hazy', 'computer', 'older', 'pine', 'raised', 'many', 'bald',
+        'snow covered', 'skateboarding', 'narrow', 'reflective', 'rear', 'khaki', 'extended', 'roman', 'american'
+    ]
+
 dataset_aliases = {
     'voc': ['voc', 'pascal_voc', 'voc07', 'voc12'],
     'imagenet_det': ['det', 'imagenet_det', 'ilsvrc_det'],
@@ -496,12 +557,13 @@ dataset_aliases = {
     'oid_challenge': ['oid_challenge', 'openimages_challenge'],
     'oid_v6': ['oid_v6', 'openimages_v6'],
     'objects365v1': ['objects365v1', 'obj365v1'],
-    'objects365v2': ['objects365v2', 'obj365v2']
+    'objects365v2': ['objects365v2', 'obj365v2'],
+    'visualgenome': ['visualgenome', 'vg', 'VisualGenomeDataset'],
 }
 
 
-def get_classes(dataset) -> list:
-    """Get class names of a dataset."""
+def _get_something(dataset, thing) -> list:
+    """Get something"""
     alias2name = {}
     for name, aliases in dataset_aliases.items():
         for alias in aliases:
@@ -509,9 +571,24 @@ def get_classes(dataset) -> list:
 
     if is_str(dataset):
         if dataset in alias2name:
-            labels = eval(alias2name[dataset] + '_classes()')
+            labels = eval(alias2name[dataset] + f'_{thing}()')
         else:
             raise ValueError(f'Unrecognized dataset: {dataset}')
     else:
         raise TypeError(f'dataset must a str, but got {type(dataset)}')
     return labels
+
+
+def get_classes(dataset) -> list:
+    """Get class names of a dataset."""
+    return _get_something(dataset, 'classes')
+
+
+def get_predicates(dataset) -> list:
+    """Get predicate names of a dataset."""
+    return _get_something(dataset, 'predicates')
+
+
+def get_attributes(dataset) -> list:
+    """Get attributes names of a dataset."""
+    return _get_something(dataset, 'attributes')
