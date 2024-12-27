@@ -18,6 +18,7 @@ class COCO(_COCO):
     """
 
     def __init__(self, annotation_file=None):
+        import pdb; pdb.set_trace()
         if getattr(pycocotools, '__version__', '0') >= '12.0.2':
             warnings.warn(
                 'mmpycocotools is deprecated. Please install official pycocotools by "pip install pycocotools"',  # noqa: E501

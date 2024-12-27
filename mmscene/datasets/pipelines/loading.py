@@ -215,6 +215,8 @@ class LoadAnnotations:
              Default: False.
         with_seg (bool): Whether to parse and load the semantic segmentation
             annotation. Default: False.
+        with rel (bool): Whether to parse and load the inter-object relations
+            Default: False
         poly2mask (bool): Whether to convert the instance masks from polygons
             to bitmaps. Default: True.
         denorm_bbox (bool): Whether to convert bbox from relative value to
@@ -230,6 +232,7 @@ class LoadAnnotations:
                  with_label=True,
                  with_mask=False,
                  with_seg=False,
+                 with_rel=False,
                  poly2mask=True,
                  denorm_bbox=False,
                  file_client_args=dict(backend='disk')):
@@ -237,6 +240,7 @@ class LoadAnnotations:
         self.with_label = with_label
         self.with_mask = with_mask
         self.with_seg = with_seg
+        self.with_rel = with_rel
         self.poly2mask = poly2mask
         self.denorm_bbox = denorm_bbox
         self.file_client_args = file_client_args.copy()
@@ -376,6 +380,17 @@ class LoadAnnotations:
             img_bytes, flag='unchanged').squeeze()
         results['seg_fields'].append('gt_semantic_seg')
         return results
+    
+    def _load_relations(self, results):
+        """Private function to load inter-object relations.
+
+        Args:
+            results (dict): Result dict from :obj:`mmscene.CustomDataset`.
+
+        Returns:
+            dict: The dict contains loaded relation annotations.
+        """
+        raise NotImplementedError
 
     def __call__(self, results):
         """Call function to load multiple types annotations.
@@ -398,6 +413,8 @@ class LoadAnnotations:
             results = self._load_masks(results)
         if self.with_seg:
             results = self._load_semantic_seg(results)
+        if self.with_rel:
+            results = self._load_relations(results)
         return results
 
     def __repr__(self):
@@ -406,6 +423,7 @@ class LoadAnnotations:
         repr_str += f'with_label={self.with_label}, '
         repr_str += f'with_mask={self.with_mask}, '
         repr_str += f'with_seg={self.with_seg}, '
+        repr_str += f'with_rel={self.with_rel}, '
         repr_str += f'poly2mask={self.poly2mask}, '
         repr_str += f'file_client_args={self.file_client_args})'
         return repr_str

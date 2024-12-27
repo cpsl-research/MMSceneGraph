@@ -29,7 +29,7 @@ class FasterRCNN(TwoStageDetector):
 
 
 @MODELS.register_module()
-class FasterRCNNwithRelation(TwoStageDetectorWithRelation):
+class FasterRCNNWithRelation(TwoStageDetectorWithRelation):
     """Implementation of `Faster R-CNN <https://arxiv.org/abs/1506.01497>`_"""
 
     def __init__(self,

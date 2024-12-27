@@ -25,7 +25,6 @@ class RelationHead(BaseModule):
     """
 
     def __init__(self,
-                 head_config=dict(),
                  bbox_roi_extractor=None,
                  relation_roi_extractor=None,
                  relation_sampler=None,
@@ -34,6 +33,9 @@ class RelationHead(BaseModule):
                  use_statistics=True,
                  num_classes=151,
                  num_predicates=51,
+                 use_gt_box=False,
+                 use_gt_label=False,
+                 stats_file=None,
                  loss_object=dict(type='CrossEntropyLoss',
                                   use_sigmoid=False,
                                   loss_weight=1.0),
@@ -51,9 +53,8 @@ class RelationHead(BaseModule):
         self.num_predicates = num_predicates
 
         # upgrade some submodule attribute to this head
-        self.head_config = head_config
-        self.use_gt_box = self.head_config.use_gt_box
-        self.use_gt_label = self.head_config.use_gt_label
+        self.use_gt_box = use_gt_box
+        self.use_gt_label = use_gt_label
         self.with_visual_bbox = (bbox_roi_extractor is not None and bbox_roi_extractor.with_visual_bbox) or \
                                 (relation_roi_extractor is not None and relation_roi_extractor.with_visual_bbox)
         self.with_visual_mask = (bbox_roi_extractor is not None and bbox_roi_extractor.with_visual_mask) or \
@@ -85,7 +86,7 @@ class RelationHead(BaseModule):
             self.comb_factor = relation_ranker.pop('comb_factor', 0.5)
             self.area_form = relation_ranker.pop('area_form', 'rect')
             loss_ranking_relation = relation_ranker.pop('loss')
-            self.loss_ranking_relation = build_loss(loss_ranking_relation)
+            self.loss_ranking_relation = MODELS.build(loss_ranking_relation)
             if loss_ranking_relation.type != 'CrossEntropyLoss':
                 num_out = 1
             else:
@@ -94,19 +95,20 @@ class RelationHead(BaseModule):
             self.relation_ranker = eval(ranker)(**relation_ranker)
 
         if loss_object is not None:
-            self.loss_object = build_loss(loss_object)
+            self.loss_object = MODELS.build(loss_object)
 
         if loss_relation is not None:
-            self.loss_relation = build_loss(loss_relation)
+            self.loss_relation = MODELS.build(loss_relation)
 
         if use_statistics:
-            cache_dir = dataset_config.pop('cache', None)
+            assert stats_file is not None
             print('Loading Statistics...')
-            if cache_dir is None:
-                raise FileNotFoundError('The cache_dir for caching the statistics is not provided.')
-            if os.path.exists(cache_dir):
-                statistics = torch.load(cache_dir, map_location=torch.device("cpu"))
+            if stats_file is None:
+                raise FileNotFoundError('The stats_file for caching the statistics is not provided.')
+            if os.path.exists(stats_file):
+                statistics = torch.load(stats_file, map_location=torch.device("cpu"))
             else:
+                raise NotImplementedError
                 dataset = build_dataset(dataset_config)
                 result = dataset.get_statistics()
                 statistics = {
@@ -116,21 +118,21 @@ class RelationHead(BaseModule):
                     'rel_classes': result['rel_classes'],
                     'att_classes': result['att_classes'],
                 }
-                torch.save(statistics, cache_dir)
+                torch.save(statistics, stats_file)
             self.statistics = statistics
             print('\n Statistics created!')
             self.obj_classes, self.rel_classes, self.att_classes = statistics['obj_classes'], statistics['rel_classes'], \
                                                                    statistics['att_classes']
-        else:
-            self.obj_classes, self.rel_classes, self.att_classes = get_classes(dataset_config.type), \
-                                                                   get_predicates('visualgenome'), \
-                                                                   get_attributes('visualgenome')
-            self.obj_classes.insert(0, '__background__')
-            self.rel_classes.insert(0, '__background__')
-            self.att_classes.insert(0, '__background__')
+        # else:
+        #     self.obj_classes, self.rel_classes, self.att_classes = get_classes(dataset_config.type), \
+        #                                                            get_predicates('visualgenome'), \
+        #                                                            get_attributes('visualgenome')
+        #     self.obj_classes.insert(0, '__background__')
+        #     self.rel_classes.insert(0, '__background__')
+        #     self.att_classes.insert(0, '__background__')
 
-        assert self.num_classes == len(self.obj_classes)
-        assert self.num_predicates == len(self.rel_classes)
+        # assert self.num_classes == len(self.obj_classes)
+        # assert self.num_predicates == len(self.rel_classes)
 
 
     @property

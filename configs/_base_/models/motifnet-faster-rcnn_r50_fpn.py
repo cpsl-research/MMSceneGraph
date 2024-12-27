@@ -1,6 +1,6 @@
 # model settings
 model = dict(
-    type='FasterRCNN',
+    type='FasterRCNNWithRelation',
     data_preprocessor=dict(
         type='DetDataPreprocessor',
         mean=[123.675, 116.28, 103.53],
@@ -61,21 +61,32 @@ model = dict(
             loss_bbox=dict(type='L1Loss', loss_weight=1.0))),
     relation_head=dict(
         type='MotifNetHead',
-        num_classes=101,
-        num_predicates=71,
+        bbox_roi_extractor=None,
+        relation_roi_extractor=None,
+        relation_sampler=None,
+        relation_ranker=None,
+        context_layer=dict(
+            type='LSTMContext',
+            num_classes=101,
+            num_predicates=7,
+            embed_dim=200,
+            hidden_dim=512,
+            context_pooling_dim=2096
+        )
         use_bias=True,
-        use_gt_box=True,
-        use_gt_label=True,
-        use_vision=True,
-        embed_dim=200,
-        hidden_dim=512,
-        roi_dim=1024,
-        context_pooling_dim=4096,
-        dropout_rate=0.2,
-        context_object_layer=1,
-        context_edge_layer=1,
-        glove_dir='/data/glove/',
-        causal_effect_analysis=False),
+        use_statistics=True,
+        num_classes=101,
+        num_predicates=7,
+        use_gt_box=False,
+        use_gt_label=False,
+        stats_file='data/visualgenome/VG_stanford_filtered_with_attribute_train_statistics.cache',  # TODO: reorg later
+        loss_object=dict(type='CrossEntropyLoss',
+                        use_sigmoid=False,
+                        loss_weight=1.0),
+        loss_relation=dict(type='CrossEntropyLoss',
+                        use_sigmoid=False,
+                        loss_weight=1.0),
+        init_cfg=None),
     # model training and testing settings
     train_cfg=dict(
         rpn=dict(

@@ -1,5 +1,6 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import copy
+import os
 import warnings
 from typing import List, Tuple, Union
 from submodules.mmscenegraph.mmscene.utils import ConfigType, OptConfigType, OptMultiConfig
